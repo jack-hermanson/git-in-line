@@ -1,6 +1,13 @@
 import React from "react";
 import {Col, Container, Row} from "reactstrap";
-import {CHHS_LINKS, COLLEGES, FOOTER_THIRD_COLUMN, GENERIC_FOOTER_LINKS, SCHOOLS_AND_PROGRAMS} from "../../constants";
+import {
+    CHHS_LINKS,
+    COLLEGES,
+    CONTAINER_FLUID,
+    FOOTER_THIRD_COLUMN,
+    GENERIC_FOOTER_LINKS,
+    SCHOOLS_AND_PROGRAMS
+} from "../../constants";
 import csuSignatureSansSerif from "../../images/csu-signature-sans-serif.svg";
 import supportCsu from "../../images/support-csu-nb.svg";
 
@@ -8,7 +15,7 @@ export const Footer: React.FC = () => {
     return (
         <footer className="footer">
             <div className="upper-footer">
-                <Container>
+                <Container fluid={CONTAINER_FLUID}>
                     <Row>
                         {renderColleges()}
                         {renderSchoolsAndPrograms()}
@@ -18,7 +25,7 @@ export const Footer: React.FC = () => {
                 </Container>
             </div>
             <div className="lower-footer">
-                <Container>
+                <Container fluid={CONTAINER_FLUID}>
                     <Row>
                         {renderGenericLinks()}
                         {renderBottomLogo()}

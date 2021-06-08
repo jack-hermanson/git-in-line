@@ -13,7 +13,7 @@ import {
     NavItem
 } from "reactstrap";
 import {NavLink, useHistory} from "react-router-dom";
-import {faCannabis, faHome, faUserCircle, faBong, faTools} from "@fortawesome/free-solid-svg-icons";
+import {faCodeBranch, faHome, faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon as FA} from "@fortawesome/react-fontawesome";
 import {useStoreActions, useStoreState} from "../../store";
 import {APP_NAME, CONTAINER_FLUID} from "../../constants";
@@ -36,12 +36,12 @@ export const Navigation: React.FC = () => {
                             <NavLink exact className="nav-link" to="/"><FA icon={faHome}/> Home</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className="nav-link" to="/strains"><FA icon={faCannabis}/> Strains</NavLink>
+                            <NavLink className="nav-link" to="/pull-requests"><FA icon={faCodeBranch}/> Pull Requests</NavLink>
                         </NavItem>
                     </Nav>
                     <Nav navbar style={{marginLeft: "auto"}}>
                         <NavItem>
-                            <NavLink exact className="nav-link" to="/">Test</NavLink>
+                            <NavLink exact className="nav-link" to="/account"><FA icon={faUser}/> Account</NavLink>
                         </NavItem>
                     </Nav>
                 </Collapse>

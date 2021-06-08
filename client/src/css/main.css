@@ -323,6 +323,52 @@
   padding-left: 15px;
 }
 
+.page-title {
+  display: flex;
+}
+.page-title .actions-button {
+  margin-left: auto;
+  margin-top: auto;
+}
+.page-title .title-text {
+  margin-bottom: 0;
+  margin-top: auto;
+  line-height: 1;
+}
+
+.main-navbar {
+  background: #576e4f;
+}
+.main-navbar a.nav-link {
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  color: white;
+}
+.main-navbar a.nav-link:hover {
+  text-decoration: none;
+  border-bottom: 2px solid white;
+}
+
+.navbar-brand {
+  font-size: 1.25em;
+}
+.navbar-brand:hover {
+  text-decoration: none;
+}
+
+.body-container {
+  min-height: 90vh;
+  display: flex;
+  flex-flow: column;
+}
+
+.main-container {
+  background: white;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  min-height: 500px;
+}
+
 /*!
  * Bootstrap v5.0.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -11067,28 +11113,8 @@ a:hover {
   text-decoration: underline;
 }
 
-.navbar-brand {
-  font-size: 1.25em;
-}
-
-.body-container {
-  min-height: 90vh;
-  display: flex;
-  flex-flow: column;
-}
-
-.main-container {
-  background: white;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  min-height: 500px;
-}
-
-.main-navbar {
-  background: #576e4f;
-}
-.main-navbar a {
-  color: white;
+.hover-mouse:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=main.css.map */

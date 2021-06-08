@@ -71,3 +71,51 @@
     }
   }
 }
+
+.page-title {
+  display: flex;
+
+  .actions-button {
+    margin-left: auto;
+    margin-top: auto;
+  }
+
+  .title-text {
+    margin-bottom: 0;
+    margin-top: auto;
+    line-height: 1;
+  }
+}
+
+.main-navbar {
+  background: $light-green;
+  a.nav-link {
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    color: white;
+    &:hover {
+      text-decoration: none;
+      border-bottom: 2px solid white;
+    }
+  }
+}
+
+.navbar-brand {
+  font-size: 1.25em;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.body-container {
+  min-height: 90vh;
+  display: flex;
+  flex-flow: column;
+}
+
+.main-container {
+  background: white;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  min-height: 500px;
+}

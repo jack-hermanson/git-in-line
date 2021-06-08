@@ -16,26 +16,6 @@ a {
   }
 }
 
-.navbar-brand {
-  font-size: 1.25em;
-}
-
-.body-container {
-  min-height: 90vh;
-  display: flex;
-  flex-flow: column;
-}
-
-.main-container {
-  background: white;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  min-height: 500px;
-}
-
-.main-navbar {
-  background: $light-green;
-  a {
-    color: white;
-  }
+.hover-mouse:hover {
+  cursor: pointer;
 }
