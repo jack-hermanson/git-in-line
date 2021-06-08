@@ -24,7 +24,30 @@ body {
 
 .header {
   background: $green;
-  min-height: 60px;
+  .logo-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    .csu-logo {
+      height: 70px;
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+    .app-name {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-transform: uppercase;
+      border-left: 2px solid white;
+      height: 2em;
+      box-sizing: border-box;
+      font-weight: 400;
+      margin-top: auto;
+      margin-bottom: auto;
+      letter-spacing: 1.5px;
+      margin-left: 1em;
+      padding-left: 1em;
+    }
+  }
 }
 
 .main-navbar {

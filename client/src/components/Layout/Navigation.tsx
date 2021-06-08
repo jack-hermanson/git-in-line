@@ -23,10 +23,10 @@ export const Navigation: React.FC = () => {
     const history = useHistory();
 
     return (
-        <Navbar className="mb-4 main-navbar px-0" expand="lg">
+        <Navbar dark className="mb-4 main-navbar px-0" expand="lg">
             <Container>
                 <NavbarBrand className="hover-mouse" onClick={() => history.push("/")}>
-                    <FA icon={faBong}/> DispoJack
+                    Git In Line
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle}/>
                 <Collapse isOpen={isOpen} navbar>
