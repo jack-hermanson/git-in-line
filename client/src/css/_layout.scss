@@ -1,0 +1,121 @@
+@import "variables";
+
+.footer {
+  box-sizing: border-box;
+  min-height: 10vh;
+  background: $green;
+  margin-bottom: 0;
+  a {
+    color: $footer-text-green;
+    &:hover {
+      color: white;
+    }
+  }
+  ul {
+    margin-bottom: 0;
+  }
+  .upper-footer {
+    background: #255f35;
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+  .lower-footer {
+    background: $green;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    ul.generic-footer-links {
+      list-style: none;
+      padding-left: 0;
+      li {
+        &:not(last-of-type) {
+          margin-right: 1em;
+        }
+        display: inline;
+        line-height: 2;
+      }
+    }
+  }
+  color: $footer-text-green;
+
+  h3 {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #bccdb3;
+  }
+}
+
+.header {
+  background: $green;
+  .logo-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    .csu-logo {
+      height: 70px;
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+    .app-name {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-transform: uppercase;
+      border-left: 2px solid white;
+      height: 2em;
+      box-sizing: border-box;
+      font-weight: 400;
+      margin-top: auto;
+      margin-bottom: auto;
+      letter-spacing: 1.5px;
+      margin-left: 15px;
+      padding-left: 15px;
+    }
+  }
+}
+
+.page-title {
+  display: flex;
+
+  .actions-button {
+    margin-left: auto;
+    margin-top: auto;
+  }
+
+  .title-text {
+    margin-bottom: 0;
+    margin-top: auto;
+    line-height: 1;
+  }
+}
+
+.main-navbar {
+  background: $light-green;
+  a.nav-link {
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    color: white;
+    &:hover {
+      text-decoration: none;
+      border-bottom: 2px solid white;
+    }
+  }
+}
+
+.navbar-brand {
+  font-size: 1.25em;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.body-container {
+  min-height: 90vh;
+  display: flex;
+  flex-flow: column;
+}
+
+.main-container {
+  background: white;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  min-height: 500px;
+}

@@ -1,3 +1,21 @@
+@import "theme";
+@import "fonts";
+@import "layout";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
 body {
-  color: red;
+  font-size: 14px;
+  background: #f4f4f4;
+}
+
+a {
+  text-decoration: none;
+  color: $green;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.hover-mouse:hover {
+  cursor: pointer;
 }
