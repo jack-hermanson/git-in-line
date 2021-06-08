@@ -2,7 +2,7 @@ export const APP_NAME = "Git In Line";
 
 export const CONTAINER_FLUID = false;
 
-export const FOOTER_THIRD_COLUMN: "support" | "chhs" | undefined = "support";
+export const FOOTER_THIRD_COLUMN: "support" | "chhs" | undefined = "chhs";
 
 export const COLLEGES = [
     {
@@ -104,3 +104,38 @@ export const GENERIC_FOOTER_LINKS = [
         url: "https://www.colostate.edu/accessibility/"
     }
 ];
+
+export const CHHS_LINKS = [
+    {
+        name: "CHHS Home",
+        url: "https://www.chhs.colostate.edu"
+    },
+    {
+        name: "IT Helpdesk",
+        url: "https://www.chhs.colostate.edu/technology/helpdesk/"
+    },
+    {
+        name: "Application Development",
+        url: "https://www.chhs.colostate.edu/technology/custom-application-development/"
+    },
+    {
+        name: "Computer Labs",
+        url: "https://www.chhs.colostate.edu/technology/student-computer-labs/"
+    },
+    {
+        name: "Citrix",
+        url: "https://citrix.chhs.colostate.edu/"
+    },
+    {
+        name: "Directory",
+        url: "https://www.chhs.colostate.edu/directory/"
+    },
+    {
+        name: "Current Students",
+        url: "https://www.chhs.colostate.edu/current-students/"
+    },
+    {
+        name: "Faculty and Staff",
+        url: "https://www.chhs.colostate.edu/faculty-and-staff/"
+    }
+]

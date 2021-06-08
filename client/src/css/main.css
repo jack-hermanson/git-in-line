@@ -280,15 +280,14 @@
 }
 .footer .lower-footer ul.generic-footer-links {
   list-style: none;
-  display: flex;
   padding-left: 0;
+}
+.footer .lower-footer ul.generic-footer-links li {
+  display: inline;
+  line-height: 2;
 }
 .footer .lower-footer ul.generic-footer-links li:not(last-of-type) {
   margin-right: 1em;
-}
-.footer .lower-footer .footer-logo {
-  height: 50px;
-  float: right;
 }
 .footer h3, .footer .h3 {
   font-size: 1.2em;
