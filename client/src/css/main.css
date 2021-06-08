@@ -46,7 +46,7 @@
 
 body {
   margin: 0;
-  font-family: "Proxima Nova";
+  font-family: "Proxima Nova", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -5434,7 +5434,7 @@ textarea.form-control-lg {
   z-index: 1080;
   display: block;
   margin: 0;
-  font-family: "Proxima Nova";
+  font-family: "Proxima Nova", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -5536,7 +5536,7 @@ textarea.form-control-lg {
   z-index: 1070;
   display: block;
   max-width: 276px;
-  font-family: "Proxima Nova";
+  font-family: "Proxima Nova", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -10731,6 +10731,7 @@ textarea.form-control-lg {
 }
 body {
   font-size: 14px;
+  background: #f4f4f4;
 }
 
 .navbar-brand {
@@ -10742,6 +10743,13 @@ body {
   overflow: scroll;
   display: flex;
   flex-flow: column;
+}
+
+.main-container {
+  background: white;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  min-height: 500px;
 }
 
 .footer {

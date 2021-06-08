@@ -16,6 +16,7 @@ import {NavLink, useHistory} from "react-router-dom";
 import {faCannabis, faHome, faUserCircle, faBong, faTools} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon as FA} from "@fortawesome/react-fontawesome";
 import {useStoreActions, useStoreState} from "../../store";
+import {APP_NAME, CONTAINER_FLUID} from "../../constants";
 
 export const Navigation: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -24,9 +25,9 @@ export const Navigation: React.FC = () => {
 
     return (
         <Navbar dark className="mb-4 main-navbar px-0" expand="lg">
-            <Container>
+            <Container fluid={CONTAINER_FLUID}>
                 <NavbarBrand className="hover-mouse" onClick={() => history.push("/")}>
-                    Git In Line
+                    {APP_NAME}
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle}/>
                 <Collapse isOpen={isOpen} navbar>

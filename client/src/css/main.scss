@@ -3,6 +3,7 @@
 
 body {
   font-size: 14px;
+  background: #f4f4f4;
 }
 
 .navbar-brand {
@@ -14,6 +15,13 @@ body {
   overflow: scroll;
   display: flex;
   flex-flow: column;
+}
+
+.main-container {
+  background: white;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  min-height: 500px;
 }
 
 .footer {
