@@ -1,10 +1,21 @@
 import "./css/main.css";
+import {StoreProvider} from "easy-peasy";
+import {BrowserRouter, Route} from "react-router-dom";
+import {store} from "./store";
+import {Layout} from "./components/Layout/Layout";
 
 function App() {
     return (
-        <div>
-            <p>App</p>
-        </div>
+        <StoreProvider store={store}>
+            <BrowserRouter>
+                <Layout>
+                    <p>inside layout</p>
+                </Layout>
+                <div className="footer">
+                    <p>test</p>
+                </div>
+            </BrowserRouter>
+        </StoreProvider>
     );
 }
 

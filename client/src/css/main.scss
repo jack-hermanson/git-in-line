@@ -1,3 +1,35 @@
+@import "theme";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
 body {
-  color: red;
+  font-size: 14px;
+}
+
+.navbar-brand {
+  font-size: 1.25em;
+}
+
+.body-container {
+  min-height: 90vh;
+  overflow: scroll;
+  display: flex;
+  flex-flow: column;
+}
+
+.footer {
+  width: 100vw;
+  min-height: 10vh;
+  background: $green;
+}
+
+.header {
+  background: $green;
+  min-height: 60px;
+}
+
+.main-navbar {
+  background: $light-green;
+  a {
+    color: white;
+  }
 }
