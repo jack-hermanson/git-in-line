@@ -7,7 +7,7 @@ export const Index: React.FC = () => {
 
     useEffect(() => {
         document.title = `${APP_NAME} | Dashboard`;
-    })
+    });
 
     return (
         <React.Fragment>
