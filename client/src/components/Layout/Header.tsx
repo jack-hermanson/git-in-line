@@ -3,7 +3,6 @@ import csuSignature from "../../images/csu-signature.svg";
 import csuSignatureMobile from "../../images/csu-signature-mobile.svg";
 import {Container} from "reactstrap";
 import {APP_NAME, CONTAINER_FLUID} from "../../constants";
-import {Link} from "react-router-dom";
 
 export const Header: React.FC = () => {
     return (
@@ -13,9 +12,9 @@ export const Header: React.FC = () => {
                     <img className="csu-logo d-none d-lg-block" alt="logo" src={csuSignature} />
                     <img className="csu-logo d-block d-lg-none" alt="logo" src={csuSignatureMobile} />
                     <div className="app-name">
-                        <Link to="/">
-                            {APP_NAME}
-                        </Link>
+                        <a target="_blank" href="https://www.chhs.colostate.edu/">
+                            College&nbsp;of&nbsp;Health and&nbsp;Human&nbsp;Sciences
+                        </a>
                     </div>
                 </div>
             </Container>

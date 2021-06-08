@@ -1,7 +1,5 @@
 export const APP_NAME = "Git In Line";
-
 export const CONTAINER_FLUID = false;
-
 export const FOOTER_THIRD_COLUMN: "support" | "chhs" | undefined = "chhs";
 
 export const COLLEGES = [
