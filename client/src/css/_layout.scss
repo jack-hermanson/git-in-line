@@ -7,6 +7,9 @@
   margin-bottom: 0;
   a {
     color: $footer-text-green;
+    &:hover {
+      color: white;
+    }
   }
   ul {
     margin-bottom: 0;
@@ -20,6 +23,20 @@
     background: $green;
     padding-top: 1em;
     padding-bottom: 1em;
+    ul.generic-footer-links {
+      list-style: none;
+      display: flex;
+      padding-left: 0;
+      li {
+        &:not(last-of-type) {
+          margin-right: 1em;
+        }
+      }
+    }
+    .footer-logo {
+      height: 50px;
+      float: right;
+    }
   }
   color: $footer-text-green;
 

@@ -262,6 +262,9 @@
 .footer a {
   color: #b8c7b0;
 }
+.footer a:hover {
+  color: white;
+}
 .footer ul {
   margin-bottom: 0;
 }
@@ -274,6 +277,18 @@
   background: #1e4d2b;
   padding-top: 1em;
   padding-bottom: 1em;
+}
+.footer .lower-footer ul.generic-footer-links {
+  list-style: none;
+  display: flex;
+  padding-left: 0;
+}
+.footer .lower-footer ul.generic-footer-links li:not(last-of-type) {
+  margin-right: 1em;
+}
+.footer .lower-footer .footer-logo {
+  height: 50px;
+  float: right;
 }
 .footer h3, .footer .h3 {
   font-size: 1.2em;
@@ -11048,6 +11063,9 @@ body {
 a {
   text-decoration: none;
   color: #1e4d2b;
+}
+a:hover {
+  text-decoration: underline;
 }
 
 .navbar-brand {

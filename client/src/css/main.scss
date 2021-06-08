@@ -11,6 +11,9 @@ body {
 a {
   text-decoration: none;
   color: $green;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .navbar-brand {
@@ -29,8 +32,6 @@ a {
   padding-bottom: 1em;
   min-height: 500px;
 }
-
-
 
 .main-navbar {
   background: $light-green;
