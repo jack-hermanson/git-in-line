@@ -9,7 +9,7 @@ function App() {
         <StoreProvider store={store}>
             <BrowserRouter>
                 <Layout>
-                    <p>inside layout</p>
+                    <h1>inside layout</h1>
                 </Layout>
                 <div className="footer">
                     <p>test</p>
