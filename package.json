@@ -1,0 +1,14 @@
+{
+  "name": "git-in-line",
+  "version": "1.0.0",
+  "description": "Keep track of PRs.",
+  "main": "index.js",
+  "author": "Jack",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "concurrently": "^6.2.0",
+    "sass": "^1.34.1",
+    "typescript": "^4.3.2"
+  }
+}
