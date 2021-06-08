@@ -11,9 +11,6 @@ function App() {
                 <Layout>
                     <h1>inside layout</h1>
                 </Layout>
-                <div className="footer">
-                    <p>test</p>
-                </div>
             </BrowserRouter>
         </StoreProvider>
     );

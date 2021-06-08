@@ -1,0 +1,59 @@
+@import "variables";
+
+.footer {
+  box-sizing: border-box;
+  min-height: 10vh;
+  background: $green;
+  margin-bottom: 0;
+  a {
+    color: $footer-text-green;
+  }
+  ul {
+    margin-bottom: 0;
+  }
+  .upper-footer {
+    background: #255f35;
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+  .lower-footer {
+    background: $green;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  color: $footer-text-green;
+
+  h3 {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #bccdb3;
+  }
+}
+
+.header {
+  background: $green;
+  .logo-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    .csu-logo {
+      height: 70px;
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+    .app-name {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-transform: uppercase;
+      border-left: 2px solid white;
+      height: 2em;
+      box-sizing: border-box;
+      font-weight: 400;
+      margin-top: auto;
+      margin-bottom: auto;
+      letter-spacing: 1.5px;
+      margin-left: 15px;
+      padding-left: 15px;
+    }
+  }
+}
