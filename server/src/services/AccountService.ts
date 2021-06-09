@@ -4,6 +4,7 @@ import {getConnection, Repository} from "typeorm";
 import {doesNotConflict} from "../utils/validation";
 import {Response} from "express";
 import * as bcrypt from "bcryptjs";
+import * as jwt from "jsonwebtoken";
 
 const getRepos = (): {
     accountRepo: Repository<Account>;
@@ -45,7 +46,7 @@ export default abstract class AccountService {
         return await accountRepo.find();
     }
 
-    // log in
+    // get one account
     static async getOne(id: number, res: Response): Promise<Account | undefined> {
         const {accountRepo} = getRepos();
         const account = await accountRepo.findOne(id);
@@ -54,6 +55,33 @@ export default abstract class AccountService {
             return undefined;
         }
         return account;
+    }
+
+    // log in
+    static async logIn(loginRequest: LoginRequest, res: Response): Promise<Account | undefined> {
+        const {accountRepo} = getRepos();
+        const account = await accountRepo.findOne({username: loginRequest.username.toLowerCase()});
+        if (!account) {
+            res.sendStatus(HTTP.NOT_FOUND);
+            return undefined;
+        }
+
+        const passwordIsValid = await bcrypt.compare(loginRequest.password, account.password);
+        if (!passwordIsValid) {
+            res.sendStatus(HTTP.BAD_REQUEST);
+            return undefined;
+        }
+
+        const token = jwt.sign(
+            {id: account.id},
+            process.env.SECRET_KEY,
+            {
+                expiresIn: "60 minutes"
+            }
+        );
+
+        await accountRepo.update(account, {token});
+        return await accountRepo.findOne({id: account.id});
     }
 }
 

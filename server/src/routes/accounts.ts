@@ -1,6 +1,6 @@
 import express, {Response} from "express";
 import {AuthRequest, HTTP} from "../utils/types";
-import {NewAccountRequest, newAccountSchema} from "../models/Account";
+import {LoginRequest, NewAccountRequest, newAccountSchema} from "../models/Account";
 import {sendError} from "../utils/utils";
 import {validateRequest} from "../utils/validation";
 import AccountService from "../services/AccountService";
@@ -34,6 +34,22 @@ router.get("/:id", async (req: AuthRequest<{ id: number; }>, res: Response) => {
     try {
         const account = await AccountService.getOne(req.params.id, res);
         if (!account) return;
+        delete account.password;
+        res.json(account);
+    } catch (error) {
+        sendError(error, res);
+    }
+});
+
+// log in
+router.post("/login", async (req: AuthRequest<LoginRequest>, res: Response) => {
+    try {
+        if (!await validateRequest(newAccountSchema, req, res)) return;
+        const loginRequest: LoginRequest = req.body;
+
+        const account = await AccountService.logIn(loginRequest, res);
+        if (!account) return;
+
         delete account.password;
         res.json(account);
     } catch (error) {
