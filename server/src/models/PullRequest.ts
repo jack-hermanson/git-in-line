@@ -20,10 +20,10 @@ export class PullRequest {
     @Column({nullable: false, type: "int"})
     accountId: number;
 
-    @Column({nullable: false, type: "enum", enum: PrStatus, default: PrStatus.PENDING})
+    @Column({nullable: false, type: "int", default: PrStatus.PENDING})
     status: PrStatus;
 
-    @Column({nullable: false, type: "enum", enum: Priority, default: Priority.MED})
+    @Column({nullable: false, type: "int", default: Priority.MED})
     priority: Priority;
 
     @Column({nullable: true})
