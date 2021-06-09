@@ -4,11 +4,12 @@ import {LoginRequest, NewAccountRequest, newAccountSchema} from "../models/Accou
 import {sendError} from "../utils/utils";
 import {validateRequest} from "../utils/validation";
 import AccountService from "../services/AccountService";
+import {auth} from "../middleware/auth";
 
 export const router = express.Router();
 
 // get accounts
-router.get("/", async (req: AuthRequest<any>, res: Response) => {
+router.get("/", auth, async (req: AuthRequest<any>, res: Response) => {
     res.json(await AccountService.getAll());
 });
 
@@ -30,7 +31,7 @@ router.post("/", async (req: AuthRequest<NewAccountRequest>, res: Response) => {
 });
 
 // get account
-router.get("/:id", async (req: AuthRequest<{ id: number; }>, res: Response) => {
+router.get("/:id", auth, async (req: AuthRequest<{ id: number; }>, res: Response) => {
     try {
         const account = await AccountService.getOne(req.params.id, res);
         if (!account) return;
