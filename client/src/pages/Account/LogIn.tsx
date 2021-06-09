@@ -9,12 +9,12 @@ import {useHistory} from "react-router-dom";
 
 export const LogIn: React.FC = () => {
 
+    const logIn = useStoreActions(actions => actions.logIn);
+    const history = useHistory();
+
     useEffect(() => {
         document.title = `${APP_NAME} | Log In`;
     });
-
-    const logIn = useStoreActions(actions => actions.logIn);
-    const history = useHistory();
 
     return (
         <React.Fragment>

@@ -19,11 +19,15 @@ export const Index: React.FC = () => {
 
     return (
         <React.Fragment>
-            <Row>
-                <Col>
-                    <PageTitle text="Account" />
-                </Col>
-            </Row>
+            {currentUser && (
+                <React.Fragment>
+                    <Row>
+                        <Col>
+                            <PageTitle text={currentUser.username} />
+                        </Col>
+                    </Row>
+                </React.Fragment>
+            )}
         </React.Fragment>
     );
 }
