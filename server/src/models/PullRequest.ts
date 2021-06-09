@@ -1,4 +1,4 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn} from "typeorm";
 import Joi from "joi";
 import {Priority, PrStatus} from "../utils/types";
 
@@ -8,10 +8,10 @@ export class PullRequest {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({nullable: false, type: "datetime"})
+    @CreateDateColumn({nullable: false})
     created: Date;
 
-    @Column({nullable: true, type: "datetime"})
+    @UpdateDateColumn({nullable: true})
     updated?: Date;
 
     @Column({nullable: false})

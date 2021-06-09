@@ -8,6 +8,7 @@ import {DbDialect} from "./utils/types";
 import {ConnectionOptions, createConnection} from "typeorm";
 import {migrations} from "./migrations/_migrations";
 import {Account} from "./models/Account";
+import {PullRequest} from "./models/PullRequest";
 
 // env
 const envPath = path.join(__dirname, "..", ".env");
@@ -37,7 +38,7 @@ export const dbOptions: ConnectionOptions = {
     type: databaseDialect,
     url: process.env.DATABASE_URL,
     entities: [
-        Account
+        Account, PullRequest
     ],
     synchronize: false,
     extra: {
