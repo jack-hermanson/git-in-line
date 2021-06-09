@@ -6,6 +6,8 @@ import {config} from "dotenv";
 import {routes} from "./routes/_routes";
 import {DbDialect} from "./utils/types";
 import {ConnectionOptions, createConnection} from "typeorm";
+import {migrations} from "./migrations/_migrations";
+import {Account} from "./models/Account";
 
 // env
 const envPath = path.join(__dirname, "..", ".env");
@@ -29,13 +31,12 @@ app.use("/*", staticFiles);
 
 // database
 const databaseDialect = process.env.DATABASE_DIALECT as DbDialect;
-const migrationsDir = path.join(__dirname, "migrations");
 export const dbOptions: ConnectionOptions = {
     database: databaseDialect === "sqlite" ? "site.db" : "",
     type: databaseDialect,
     url: process.env.DATABASE_URL,
     entities: [
-
+        Account
     ],
     synchronize: false,
     extra: {
@@ -45,8 +46,8 @@ export const dbOptions: ConnectionOptions = {
     },
     migrationsRun: true,
     migrationsTableName: "migrations",
-    migrations: [migrationsDir],
-    cli: {migrationsDir}
+    migrations: migrations,
+    cli: {migrationsDir:  path.join(__dirname, "migrations")}
 };
 createConnection(dbOptions).then(connection => {
     console.log(`Connected to database type: ${connection.options.type}.`);

@@ -22,7 +22,7 @@ export default abstract class AccountService {
         if (!await doesNotConflict({
             repo: accountRepo,
             properties: [
-                {name: "username", value: newAccount.username}
+                {name: "username", value: newAccount.username.toLowerCase()}
             ],
             res: res
         })) {
@@ -33,8 +33,8 @@ export default abstract class AccountService {
         const salt = await bcrypt.genSalt(10);
 
         const account = new Account();
-        account.username = newAccount.username;
-        account.password = await bcrypt.hash(account.password, salt);
+        account.username = newAccount.username.toLowerCase();
+        account.password = await bcrypt.hash(newAccount.password, salt);
 
         return await accountRepo.save(account);
     }

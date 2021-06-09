@@ -21,6 +21,7 @@ router.post("/", async (req: AuthRequest<NewAccountRequest>, res: Response) => {
         const newAccount = await AccountService.register(requestBody, res);
 
         if (!newAccount) return;
+        delete newAccount.password;
 
         res.status(HTTP.CREATED).json(newAccount);
     } catch (error) {
