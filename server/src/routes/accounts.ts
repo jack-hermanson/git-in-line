@@ -28,3 +28,15 @@ router.post("/", async (req: AuthRequest<NewAccountRequest>, res: Response) => {
         sendError(error, res);
     }
 });
+
+// get account
+router.get("/:id", async (req: AuthRequest<{ id: number; }>, res: Response) => {
+    try {
+        const account = await AccountService.getOne(req.params.id, res);
+        if (!account) return;
+        delete account.password;
+        res.json(account);
+    } catch (error) {
+        sendError(error, res);
+    }
+});

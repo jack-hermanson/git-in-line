@@ -44,5 +44,16 @@ export default abstract class AccountService {
         const {accountRepo} = getRepos();
         return await accountRepo.find();
     }
+
+    // log in
+    static async getOne(id: number, res: Response): Promise<Account | undefined> {
+        const {accountRepo} = getRepos();
+        const account = await accountRepo.findOne(id);
+        if (!account) {
+            res.sendStatus(HTTP.NOT_FOUND);
+            return undefined;
+        }
+        return account;
+    }
 }
 
