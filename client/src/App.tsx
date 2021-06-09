@@ -7,6 +7,7 @@ import {Index as DashboardIndex} from "./pages/Dashboard/Index";
 import {Index as PullRequestsIndex} from "./pages/PullRequests/Index";
 import {Index as AccountIndex} from "./pages/Account/Index";
 import {New as NewPullRequest} from "./pages/PullRequests/New";
+import {LogIn} from "./pages/Account/LogIn";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route exact path="/pull-requests" component={PullRequestsIndex} />
                     <Route exact path="/pull-requests/new" component={NewPullRequest} />
                     <Route exact path="/account" component={AccountIndex} />
+                    <Route exact path="/account/login" component={LogIn} />
                 </Layout>
             </BrowserRouter>
         </StoreProvider>

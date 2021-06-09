@@ -41,7 +41,7 @@ export const Navigation: React.FC = () => {
                     </Nav>
                     <Nav navbar style={{marginLeft: "auto"}}>
                         <NavItem>
-                            <NavLink exact className="nav-link" to="/account"><FA icon={faUser}/> Account</NavLink>
+                            <NavLink className="nav-link" to="/account"><FA icon={faUser}/> Account</NavLink>
                         </NavItem>
                     </Nav>
                 </Collapse>
