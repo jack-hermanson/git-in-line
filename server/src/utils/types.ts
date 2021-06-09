@@ -17,3 +17,15 @@ export enum HTTP {
     CONFLICT = 409,
     SERVER_ERROR = 500
 }
+
+export enum PrStatus {
+    PENDING = 1,
+    CHANGES = 2,
+    APPROVED = 3
+}
+
+export enum Priority {
+    HIGH = 1,
+    MED = 2,
+    LOW = 3
+}

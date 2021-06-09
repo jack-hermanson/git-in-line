@@ -24,7 +24,8 @@ const staticFiles = express.static(path.join(__dirname, "../../client/build"));
 app.use(staticFiles);
 
 // express routes
-app.use("/api/accounts", routes.account);
+app.use("/api/accounts", routes.accounts);
+app.use("/api/pull-requests", routes.pullRequests);
 
 // any routes not picked up by the server api will be handled by the react router
 app.use("/*", staticFiles);
