@@ -1,8 +1,8 @@
-import {Priority} from "../utils/types";
+import {HTTP, Priority} from "../utils/types";
 import {getConnection, Repository} from "typeorm";
 import {doesNotConflict} from "../utils/validation";
 import {Response} from "express";
-import {PullRequest, PullRequestRequest} from "../models/PullRequest";
+import {PullRequest, NewPrRequest, EditPrRequest} from "../models/PullRequest";
 import {Account} from "../models/Account";
 
 const getRepos = (): {
@@ -21,7 +21,7 @@ export default abstract class PullRequestService {
     }
 
     // new PR
-    static async create(newPr: PullRequestRequest, account: Account, res: Response): Promise<PullRequest | undefined> {
+    static async create(newPr: NewPrRequest, account: Account, res: Response): Promise<PullRequest | undefined> {
 
         // repo
         const {pullRequestRepo} = await getRepos();
@@ -47,5 +47,39 @@ export default abstract class PullRequestService {
         pullRequest.jiraUrl = newPr.jiraUrl;
         pullRequest.notes = newPr.notes;
         return await pullRequestRepo.save(pullRequest);
+    }
+
+    // edit PR
+    static async edit(newPr: EditPrRequest, id: number, res: Response): Promise<PullRequest | undefined> {
+
+        // repo
+        const {pullRequestRepo} = getRepos();
+
+        // get existing PR
+        const pullRequest = await pullRequestRepo.findOne(id);
+        if (!pullRequest) {
+            res.sendStatus(HTTP.NOT_FOUND);
+            return undefined;
+        }
+
+        // check for conflicts
+        if (!await doesNotConflict({
+            repo: pullRequestRepo,
+            properties: [
+                {name: "gitHubUrl", value: newPr.gitHubUrl}
+            ],
+            res: res,
+            existingRecord: pullRequest
+        })) {
+            return undefined;
+        }
+
+        // save changes
+        return await pullRequestRepo.save({
+            ...pullRequest,
+            ...newPr,
+            jiraUrl: newPr.jiraUrl || null,
+            notes: newPr.notes || null
+        });
     }
 }

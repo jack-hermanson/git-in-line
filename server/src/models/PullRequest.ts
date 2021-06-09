@@ -34,16 +34,27 @@ export class PullRequest {
 
 }
 
-export interface PullRequestRequest {
+export interface NewPrRequest {
     gitHubUrl: string;
     priority: Priority;
     jiraUrl?: string;
     notes?: string;
 }
 
-export const pullRequestSchema = Joi.object().options({abortEarly: false}).keys({
+const baseSchemaKeys = {
     gitHubUrl: Joi.string().uri().required(),
     priority: Joi.number().integer().optional().min(Priority.HIGH).max(Priority.LOW),
-    jiraUrl: Joi.string().optional(),
+    jiraUrl: Joi.string().uri().optional(),
     notes: Joi.string().optional()
-});
+};
+
+export const newPrSchema = Joi.object().options({abortEarly: false}).keys(baseSchemaKeys);
+
+export interface EditPrRequest extends NewPrRequest {
+    status: PrStatus;
+}
+
+export const editPrSchema = Joi.object().options({abortEarly: false}).keys({
+    ...baseSchemaKeys,
+    status: Joi.number().required().min(PrStatus.PENDING).max(PrStatus.APPROVED)
+})
