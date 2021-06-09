@@ -36,7 +36,6 @@ export class PullRequest {
 
 export interface PullRequestRequest {
     gitHubUrl: string;
-    accountId: number;
     priority: Priority;
     jiraUrl?: string;
     notes?: string;
@@ -44,8 +43,7 @@ export interface PullRequestRequest {
 
 export const pullRequestSchema = Joi.object().options({abortEarly: false}).keys({
     gitHubUrl: Joi.string().uri().required(),
-    accountId: Joi.number().integer().required().positive(),
-    priority: Joi.number().integer().required().min(Priority.HIGH).max(Priority.LOW),
+    priority: Joi.number().integer().optional().min(Priority.HIGH).max(Priority.LOW),
     jiraUrl: Joi.string().optional(),
     notes: Joi.string().optional()
 });
