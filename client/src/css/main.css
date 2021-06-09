@@ -11126,4 +11126,12 @@ a.btn:hover {
   text-decoration: none;
 }
 
+.bottom-buttons {
+  margin-bottom: 0;
+  margin-top: 1.6em;
+}
+.bottom-buttons button:not(last-of-type) {
+  margin-right: 0.5em;
+}
+
 /*# sourceMappingURL=main.css.map */
