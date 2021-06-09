@@ -1,5 +1,5 @@
 import {router as account} from "./accounts";
 
-export const routers = {
+export const routes = {
     account
-}
+};
