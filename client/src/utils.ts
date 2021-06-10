@@ -11,3 +11,7 @@ export const getAuthHeader = (token: string): AuthHeader => {
         }
     };
 };
+
+export const scrollToTop = (): void => {
+    window.scrollTo(0, 0);
+};

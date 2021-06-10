@@ -6,6 +6,7 @@ import {LoginForm} from "../../components/Account/LoginForm";
 import {useStoreActions} from "../../store";
 import {useHistory} from "react-router-dom";
 import {LoginRequest} from "../../models/account";
+import {scrollToTop} from "../../utils";
 
 export const LogIn: React.FC = () => {
 
@@ -36,7 +37,7 @@ export const LogIn: React.FC = () => {
             await logIn(loginRequest);
             history.push("/account");
         } catch (error) {
-            console.error(error);
+            scrollToTop();
         }
     }
 }

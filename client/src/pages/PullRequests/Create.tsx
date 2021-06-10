@@ -5,6 +5,7 @@ import {CreateEditPullRequest} from "../../components/PullRequest/CreateEditPull
 import {PullRequestRequest} from "../../models/pullRequest";
 import {useStoreActions, useStoreState} from "../../store";
 import {useHistory} from "react-router-dom";
+import {scrollToTop} from "../../utils";
 
 export const Create: React.FC = () => {
 
@@ -37,9 +38,10 @@ export const Create: React.FC = () => {
         if (currentUser?.token) {
             try {
                 await savePullRequest({pullRequest: newPr, token: currentUser.token});
-                console.log("ok");
+                history.push("/pull-requests");
             } catch (error) {
                 console.error(error);
+                scrollToTop();
             }
         }
     }

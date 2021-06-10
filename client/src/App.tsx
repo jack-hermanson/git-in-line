@@ -8,12 +8,15 @@ import {Index as PullRequestsIndex} from "./pages/PullRequests/Index";
 import {Index as AccountIndex} from "./pages/Account/Index";
 import {Create as NewPullRequest} from "./pages/PullRequests/Create";
 import {LogIn} from "./pages/Account/LogIn";
+import {Alerts} from "./components/Alerts/Alerts";
 
 function App() {
     return (
         <StoreProvider store={store}>
             <BrowserRouter>
                 <Layout>
+                    <Alerts />
+
                     <Route exact path="/" component={DashboardIndex} />
                     <Route exact path="/pull-requests" component={PullRequestsIndex} />
                     <Route exact path="/pull-requests/new" component={NewPullRequest} />

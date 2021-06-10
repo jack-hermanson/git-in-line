@@ -3,6 +3,7 @@ import {AccountRecord, LoginRequest} from "./models/account";
 import AccountClient from "./clients/AccountClient";
 import PullRequestClient from "./clients/PullRequestClient";
 import {PullRequestRecord, PullRequestRequest} from "./models/pullRequest";
+import {AlertItem, errorAlert, successAlert} from "./models/alert";
 
 interface StoreModel {
     currentUser: AccountRecord | undefined;
@@ -12,6 +13,10 @@ interface StoreModel {
     pullRequests: PullRequestRecord[];
     setPullRequests: Action<StoreModel, PullRequestRecord[]>;
     savePullRequest: Thunk<StoreModel, { pullRequest: PullRequestRequest; token: string; }>;
+
+    alerts: AlertItem[];
+    setAlerts: Action<StoreModel, AlertItem[]>;
+    addAlert: Action<StoreModel, AlertItem>;
 }
 
 export const store = createStore<StoreModel>({
@@ -20,8 +25,14 @@ export const store = createStore<StoreModel>({
         state.currentUser = payload;
     }),
     logIn: thunk(async (actions, payload) => {
-        const user = await AccountClient.logIn(payload);
-        actions.setCurrentUser(user);
+        try {
+            const user = await AccountClient.logIn(payload);
+            actions.setCurrentUser(user);
+        } catch (error) {
+            actions.addAlert(errorAlert("Login failed."));
+            console.error(error);
+            throw error;
+        }
     }),
 
     pullRequests: [],
@@ -29,7 +40,23 @@ export const store = createStore<StoreModel>({
         state.pullRequests = payload;
     }),
     savePullRequest: thunk(async (actions, {pullRequest, token}) => {
-        await PullRequestClient.create(pullRequest, token);
+        try {
+            await PullRequestClient.create(pullRequest, token);
+            actions.addAlert(successAlert("pull request", "created"));
+        } catch (error) {
+            const errorText = `Failed to save pull request. ${error.message}.`;
+            actions.addAlert(errorAlert(errorText));
+            console.log(error.response);
+            throw error;
+        }
+    }),
+
+    alerts: [],
+    setAlerts: action((state, payload) => {
+        state.alerts = payload;
+    }),
+    addAlert: action((state, payload) => {
+        state.alerts = [payload, ...state.alerts];
     })
 });
 
