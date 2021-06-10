@@ -9,7 +9,7 @@ import {EditPrRequest, editPrSchema, NewPrRequest, newPrSchema} from "../models/
 export const router = express.Router();
 
 // get all PRs
-router.get("/", auth, async (req: AuthRequest<any>, res: Response) => {
+router.get("/", async (req: AuthRequest<any>, res: Response) => {
     res.json(await PullRequestService.getAll());
 });
 
