@@ -66,9 +66,9 @@ export const Navigation: React.FC = () => {
 
         return (
             <ButtonDropdown isOpen={showAccountDrop} toggle={() => setShowAccountDrop(o => !o)}>
-                <DropdownToggle size="sm" color="secondary" caret>
-                    {renderUserIcon()}
-                    {currentUser.username}
+                <DropdownToggle size="sm" color="secondary" style={{textTransform: "capitalize"}} caret>
+                    {renderUserIcon()}{" "}
+                    {currentUser.username}{" "}
                 </DropdownToggle>
                 <DropdownMenu end>
                     <DropdownItem onClick={() => history.push("/account")}>
