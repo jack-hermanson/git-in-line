@@ -12,7 +12,7 @@ export const New: React.FC = () => {
                 </Col>
             </Row>
             <Row>
-                <Col>
+                <Col lg={6}>
                     <CreateEditPullRequest />
                 </Col>
             </Row>

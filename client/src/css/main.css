@@ -370,7 +370,7 @@
 .main-container {
   background: white;
   padding-top: 1em;
-  padding-bottom: 1em;
+  padding-bottom: 1.6em;
   min-height: 500px;
 }
 
@@ -11132,6 +11132,14 @@ a.btn:hover {
 }
 .bottom-buttons button:not(last-of-type) {
   margin-right: 0.5em;
+}
+
+.form-label {
+  font-size: 16px;
+}
+.form-label.required:after {
+  content: " *";
+  color: red;
 }
 
 /*# sourceMappingURL=main.css.map */

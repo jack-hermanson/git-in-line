@@ -31,3 +31,13 @@ a.btn:hover {
     margin-right: 0.5em;
   }
 }
+
+.form-label {
+  font-size: 16px;
+  &.required {
+    &:after {
+      content: " *";
+      color: red;
+    }
+  }
+}
