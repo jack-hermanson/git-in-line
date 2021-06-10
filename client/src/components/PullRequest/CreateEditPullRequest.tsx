@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react";
 import {Button, FormGroup, Input, Label} from "reactstrap";
 import {useStoreState} from "../../store";
 import {useHistory} from "react-router-dom";
+import {PullRequestRequest} from "../../models/pullRequest";
 
 interface Props {
-
+    onSubmit: (newPr: PullRequestRequest) => any;
 }
 
-export const CreateEditPullRequest: React.FC<Props> = () => {
+export const CreateEditPullRequest: React.FC<Props> = ({onSubmit}) => {
 
     const [gitHubUrl, setGitHubUrl] = useState("");
     const [priority, setPriority] = useState(2);
@@ -35,7 +36,12 @@ export const CreateEditPullRequest: React.FC<Props> = () => {
 
     function submit(event: React.FormEvent) {
         event.preventDefault();
-        console.log("form submitted");
+        onSubmit({
+            gitHubUrl,
+            priority,
+            jiraUrl: jiraUrl.length ? jiraUrl : undefined,
+            notes: notes.length ? notes : undefined
+        });
     }
 
     function reset(event: React.FormEvent) {

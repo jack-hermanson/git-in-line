@@ -6,7 +6,7 @@ import {Layout} from "./components/Layout/Layout";
 import {Index as DashboardIndex} from "./pages/Dashboard/Index";
 import {Index as PullRequestsIndex} from "./pages/PullRequests/Index";
 import {Index as AccountIndex} from "./pages/Account/Index";
-import {New as NewPullRequest} from "./pages/PullRequests/New";
+import {Create as NewPullRequest} from "./pages/PullRequests/Create";
 import {LogIn} from "./pages/Account/LogIn";
 
 function App() {
