@@ -15,13 +15,15 @@ import {
 import {NavLink, useHistory} from "react-router-dom";
 import {faCodeBranch, faHome, faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon as FA} from "@fortawesome/react-fontawesome";
-import {useStoreActions, useStoreState} from "../../store";
+import {useStoreState} from "../../store";
 import {APP_NAME, CONTAINER_FLUID} from "../../constants";
 
 export const Navigation: React.FC = () => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [showAccountDrop, setShowAccountDrop] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const history = useHistory();
+    const currentUser = useStoreState(state => state.currentUser);
 
     return (
         <Navbar dark className="mb-4 main-navbar px-0" expand="lg">
@@ -41,11 +43,42 @@ export const Navigation: React.FC = () => {
                     </Nav>
                     <Nav navbar style={{marginLeft: "auto"}}>
                         <NavItem>
-                            <NavLink className="nav-link" to="/account"><FA icon={faUser}/> Account</NavLink>
+                            {renderAccount()}
                         </NavItem>
                     </Nav>
                 </Collapse>
             </Container>
         </Navbar>
     );
+
+    function renderUserIcon() {
+        return (
+            <FA className="me-1" icon={faUser}/>
+        );
+    }
+
+    function renderAccount() {
+        if (!currentUser) {
+            return (
+                <NavLink className="nav-link" to="/account">{renderUserIcon()}Account</NavLink>
+            );
+        }
+
+        return (
+            <ButtonDropdown isOpen={showAccountDrop} toggle={() => setShowAccountDrop(o => !o)}>
+                <DropdownToggle size="sm" color="secondary" caret>
+                    {renderUserIcon()}
+                    {currentUser.username}
+                </DropdownToggle>
+                <DropdownMenu end>
+                    <DropdownItem onClick={() => history.push("/account")}>
+                        My Account
+                    </DropdownItem>
+                    <DropdownItem>
+                        Log Out
+                    </DropdownItem>
+                </DropdownMenu>
+            </ButtonDropdown>
+        );
+    }
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Button, FormGroup, Input, Label} from "reactstrap";
 import {LoginRequest} from "../../utils/types";
 

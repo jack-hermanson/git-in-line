@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {PageTitle} from "../../components/Layout/PageTitle";
-import {Button, Col, Row} from "reactstrap";
+import {Col, Row} from "reactstrap";
 import {APP_NAME} from "../../constants";
 import {Link} from "react-router-dom";
 
