@@ -17,5 +17,5 @@ export const New: React.FC = () => {
                 </Col>
             </Row>
         </React.Fragment>
-    )
+    );
 }

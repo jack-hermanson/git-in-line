@@ -3,9 +3,9 @@ import {PageTitle} from "../../components/Layout/PageTitle";
 import {Col, Row} from "reactstrap";
 import {APP_NAME} from "../../constants";
 import {LoginForm} from "../../components/Account/LoginForm";
-import {LoginRequest} from "../../utils/types";
 import {useStoreActions} from "../../store";
 import {useHistory} from "react-router-dom";
+import {LoginRequest} from "../../models/account";
 
 export const LogIn: React.FC = () => {
 

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, FormGroup, Input, Label} from "reactstrap";
-import {LoginRequest} from "../../utils/types";
+import {LoginRequest} from "../../models/account";
 
 interface Props {
     onSubmit: (loginRequest: LoginRequest) => any;

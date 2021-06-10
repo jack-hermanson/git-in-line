@@ -1,11 +1,10 @@
 import {createStore, createTypedHooks, action, Action, thunk, Thunk} from "easy-peasy";
-import AccountModel from "./models/AccountModel";
-import {LoginRequest} from "./utils/types";
+import {AccountRecord, LoginRequest} from "./models/account";
 import AccountClient from "./clients/AccountClient";
 
 interface StoreModel {
-    currentUser: AccountModel | undefined;
-    setCurrentUser: Action<StoreModel, AccountModel>;
+    currentUser: AccountRecord | undefined;
+    setCurrentUser: Action<StoreModel, AccountRecord>;
     logIn: Thunk<StoreModel, LoginRequest>;
 }
 
