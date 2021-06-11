@@ -11159,4 +11159,8 @@ table.same-width tbody > tr th {
   margin-bottom: 0 !important;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 /*# sourceMappingURL=main.css.map */
