@@ -13,7 +13,7 @@ export const SocketConnection: React.FC = () => {
 
         // event handlers
         socket.on(SocketEvent.MODIFY_PULL_REQUESTS, () => {
-            console.log("Strains have been modified. Time to fetch them again.");
+            console.log("Pull requests have been modified. Time to fetch them again.");
             loadPullRequests();
         });
 

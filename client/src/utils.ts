@@ -22,12 +22,12 @@ export interface KeyValPair {
     val: string | number | React.ReactNode;
 }
 
-export const formatDate = (date: Date): string => {
-    return new Date(date).toLocaleDateString();
+export const formatDate = (date: Date, showYear: boolean = false): string => {
+    return new Date(date).toLocaleDateString([], {day: "numeric", month: "numeric"});
 }
 
 export const formatTime = (date: Date): string => {
-    return new Date(date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    return new Date(date).toLocaleTimeString([], {hour: "numeric", minute: "numeric"});
 }
 
 export const formatDateTime = (date: Date): string => {

@@ -83,5 +83,14 @@ export default abstract class AccountService {
         await accountRepo.update(account, {token});
         return await accountRepo.findOne({id: account.id});
     }
+
+    // log out
+    static async logOut(account: Account): Promise<void> {
+        const {accountRepo} = getRepos();
+        await accountRepo.save({
+            ...account,
+            token: undefined
+        });
+    }
 }
 

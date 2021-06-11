@@ -21,6 +21,7 @@ export const Edit: React.FC<RouteComponentProps<{ id: string }>> = ({match}) => 
         if (!currentUser) {
             history.push("/account/login");
         }
+        scrollToTop();
     }, [history, currentUser]);
 
     return (

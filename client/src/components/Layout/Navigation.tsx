@@ -15,7 +15,7 @@ import {
 import {NavLink, useHistory} from "react-router-dom";
 import {faCodeBranch, faHome, faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon as FA} from "@fortawesome/react-fontawesome";
-import {useStoreState} from "../../store";
+import {useStoreActions, useStoreState} from "../../store";
 import {APP_NAME, CONTAINER_FLUID} from "../../constants";
 
 export const Navigation: React.FC = () => {
@@ -24,6 +24,7 @@ export const Navigation: React.FC = () => {
     const toggle = () => setIsOpen(!isOpen);
     const history = useHistory();
     const currentUser = useStoreState(state => state.currentUser);
+    const logOut = useStoreActions(actions => actions.logOut);
 
     return (
         <Navbar dark className="mb-4 main-navbar px-0" expand="lg">
@@ -58,27 +59,30 @@ export const Navigation: React.FC = () => {
     }
 
     function renderAccount() {
-        if (!currentUser) {
+        if (!currentUser?.token) {
             return (
                 <NavLink className="nav-link" to="/account">{renderUserIcon()}Account</NavLink>
             );
+        } else {
+            return (
+                <ButtonDropdown isOpen={showAccountDrop} toggle={() => setShowAccountDrop(o => !o)}>
+                    <DropdownToggle size="sm" color="secondary" style={{textTransform: "capitalize"}} caret>
+                        {renderUserIcon()}{" "}
+                        {currentUser.username}{" "}
+                    </DropdownToggle>
+                    <DropdownMenu end>
+                        <DropdownItem onClick={() => history.push("/account")}>
+                            My Account
+                        </DropdownItem>
+                        <DropdownItem onClick={async () => {
+                            await logOut(currentUser.token!);
+                            history.push("/");
+                        }}>
+                            Log Out
+                        </DropdownItem>
+                    </DropdownMenu>
+                </ButtonDropdown>
+            );
         }
-
-        return (
-            <ButtonDropdown isOpen={showAccountDrop} toggle={() => setShowAccountDrop(o => !o)}>
-                <DropdownToggle size="sm" color="secondary" style={{textTransform: "capitalize"}} caret>
-                    {renderUserIcon()}{" "}
-                    {currentUser.username}{" "}
-                </DropdownToggle>
-                <DropdownMenu end>
-                    <DropdownItem onClick={() => history.push("/account")}>
-                        My Account
-                    </DropdownItem>
-                    <DropdownItem>
-                        Log Out
-                    </DropdownItem>
-                </DropdownMenu>
-            </ButtonDropdown>
-        );
     }
 }

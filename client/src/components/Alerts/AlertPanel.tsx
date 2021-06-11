@@ -15,7 +15,7 @@ export const AlertPanel: React.FC<Props> = ({alert}) => {
     const alerts = useStoreState(state => state.alerts);
 
     return (
-        <Alert color={alert.color} className="d-flex" onClick={() => removeAlert()}>
+        <Alert color={alert.color} fade={false} className="d-flex" onClick={() => removeAlert()}>
             <p className="mb-0">{alert.text}</p>
             <span className="ms-auto hover-mouse">
                 <FA icon={faTimes} />

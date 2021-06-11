@@ -57,3 +57,9 @@ router.post("/login", async (req: AuthRequest<LoginRequest>, res: Response) => {
         sendError(error, res);
     }
 });
+
+// log out
+router.post("/logout", auth, async (req: AuthRequest<any>, res: Response) => {
+    await AccountService.logOut(req.account);
+    res.sendStatus(HTTP.OK);
+});
