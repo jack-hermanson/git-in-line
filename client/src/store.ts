@@ -10,7 +10,7 @@ interface StoreModel {
     setCurrentUser: Action<StoreModel, AccountRecord>;
     logIn: Thunk<StoreModel, LoginRequest>;
 
-    pullRequests: PullRequestRecord[];
+    pullRequests: PullRequestRecord[] | undefined;
     setPullRequests: Action<StoreModel, PullRequestRecord[]>;
     savePullRequest: Thunk<StoreModel, { pullRequest: PullRequestRequest; token: string; }>;
     loadPullRequests: Thunk<StoreModel>;
@@ -36,7 +36,7 @@ export const store = createStore<StoreModel>({
         }
     }),
 
-    pullRequests: [],
+    pullRequests: undefined,
     setPullRequests: action((state, payload) => {
         state.pullRequests = payload;
     }),

@@ -4,8 +4,13 @@ import {Col, Row} from "reactstrap";
 import {APP_NAME} from "../../constants";
 import {Link} from "react-router-dom";
 import {LoadingSpinner} from "../../components/Utils/LoadingSpinner";
+import {useStoreState} from "../../store";
+import {PullRequest} from "../../components/PullRequest/PullRequest";
 
 export const Index: React.FC = () => {
+
+    const pullRequests = useStoreState(state => state.pullRequests);
+
     useEffect(() => {
         document.title = `${APP_NAME} | Pull Requests`;
     });
@@ -21,7 +26,11 @@ export const Index: React.FC = () => {
             </Row>
             <Row>
                 <Col>
-                    <LoadingSpinner />
+                    {pullRequests ? (
+                        pullRequests.map(pr => (
+                            <PullRequest pullRequest={pr} key={pr.id} />
+                        ))
+                    ) : <LoadingSpinner /> }
                 </Col>
             </Row>
         </React.Fragment>

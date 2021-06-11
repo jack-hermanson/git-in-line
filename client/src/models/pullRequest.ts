@@ -11,5 +11,5 @@ export interface PullRequestRecord extends PullRequestRequest, BaseModel {
     accountId: number;
     status: number;
     created: Date;
-    updated?: Date;
+    updated: Date;
 }
