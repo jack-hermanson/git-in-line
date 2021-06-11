@@ -10,6 +10,7 @@ import {Alerts} from "./components/Alerts/Alerts";
 import {useEffect} from "react";
 import {useStoreActions, useStoreState} from "./store";
 import {SocketConnection} from "./components/Utils/SocketConnection";
+import {Edit as EditPullRequest} from "./pages/PullRequests/Edit";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
                 <Route exact path="/" component={DashboardIndex} />
                 <Route exact path="/pull-requests" component={PullRequestsIndex} />
                 <Route exact path="/pull-requests/new" component={NewPullRequest} />
+                <Route exact path="/pull-requests/edit/:id" component={EditPullRequest} />
                 <Route exact path="/account" component={AccountIndex} />
                 <Route exact path="/account/login" component={LogIn} />
             </Layout>
