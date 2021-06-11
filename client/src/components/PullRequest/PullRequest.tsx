@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Card, CardBody, CardHeader} from "reactstrap";
+import {Card, CardBody, CardFooter, CardHeader} from "reactstrap";
 import {PullRequestRecord} from "../../models/pullRequest";
 import {KeyValTable} from "../Utils/KeyValTable";
 import {PriorityLabel} from "./PriorityLabel";
@@ -51,6 +51,9 @@ export const PullRequest: React.FC<Props> = ({pullRequest}: Props) => {
             <CardBody className="p-0">
                 <KeyValTable keyValPairs={attributes} className="card-table mb-0 table-striped same-width" />
             </CardBody>
+            <CardFooter className="d-block d-lg-none px-1">
+                {renderStatusLabel()}
+            </CardFooter>
             {renderModal()}
         </Card>
     );
@@ -61,12 +64,21 @@ export const PullRequest: React.FC<Props> = ({pullRequest}: Props) => {
                 <span>
                     {formatDateTime(pullRequest.created)}
                 </span>
-                <StatusLabel
-                    className={`ms-2 ${currentUser?.token && "hover-mouse"}`}
-                    status={pullRequest.status}
-                    onClick={() => setShowStatusModal(true)}
-                />
+                <div className="d-none d-lg-flex">
+                    {renderStatusLabel()}
+                </div>
+
             </h5>
+        );
+    }
+
+    function renderStatusLabel() {
+        return (
+            <StatusLabel
+                className={`ms-2 ${currentUser?.token && "hover-mouse"}`}
+                status={pullRequest.status}
+                onClick={() => setShowStatusModal(true)}
+            />
         );
     }
 
