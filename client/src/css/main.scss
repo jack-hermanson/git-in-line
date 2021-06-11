@@ -4,7 +4,6 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 body {
-  font-size: 14px;
   background: #f4f4f4;
 }
 
@@ -22,4 +21,59 @@ a {
 
 a.btn:hover {
   text-decoration: none;
+}
+
+.bottom-buttons {
+  margin-bottom: 0;
+  margin-top: 1.6em;
+  button:not(last-of-type) {
+    margin-right: 0.5em;
+  }
+}
+
+.form-label {
+  &.required {
+    &:after {
+      content: " *";
+      color: red;
+    }
+  }
+}
+
+.card-table {
+  tbody > tr {
+    th {
+      padding-left: 1em;
+    }
+
+    td:last-of-type {
+      padding-right: 1em;
+    }
+
+    &:last-of-type {
+      th, td {
+        border-bottom: 0;
+      }
+    }
+
+    &:first-of-type {
+      th, td {
+        border-top: 0;
+      }
+    }
+  }
+}
+
+table.same-width {
+  tbody > tr {
+    th {
+      width: 30%;
+    }
+  }
+}
+
+.no-mb-last {
+  &:last-of-type {
+    margin-bottom: 0 !important;
+  }
 }

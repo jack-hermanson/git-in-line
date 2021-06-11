@@ -54,7 +54,7 @@ export interface EditPrRequest extends NewPrRequest {
     status: PrStatus;
 }
 
-export const editPrSchema = Joi.object().options({abortEarly: false}).keys({
+export const editPrSchema = Joi.object().options({abortEarly: false, allowUnknown: true}).keys({
     ...baseSchemaKeys,
     status: Joi.number().required().min(PrStatus.PENDING).max(PrStatus.APPROVED)
 })

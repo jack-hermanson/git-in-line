@@ -370,7 +370,7 @@
 .main-container {
   background: white;
   padding-top: 1em;
-  padding-bottom: 1em;
+  padding-bottom: 1.6em;
   min-height: 500px;
 }
 
@@ -11106,7 +11106,6 @@ textarea.form-control-lg {
   }
 }
 body {
-  font-size: 14px;
   background: #f4f4f4;
 }
 
@@ -11124,6 +11123,40 @@ a:hover {
 
 a.btn:hover {
   text-decoration: none;
+}
+
+.bottom-buttons {
+  margin-bottom: 0;
+  margin-top: 1.6em;
+}
+.bottom-buttons button:not(last-of-type) {
+  margin-right: 0.5em;
+}
+
+.form-label.required:after {
+  content: " *";
+  color: red;
+}
+
+.card-table tbody > tr th {
+  padding-left: 1em;
+}
+.card-table tbody > tr td:last-of-type {
+  padding-right: 1em;
+}
+.card-table tbody > tr:last-of-type th, .card-table tbody > tr:last-of-type td {
+  border-bottom: 0;
+}
+.card-table tbody > tr:first-of-type th, .card-table tbody > tr:first-of-type td {
+  border-top: 0;
+}
+
+table.same-width tbody > tr th {
+  width: 30%;
+}
+
+.no-mb-last:last-of-type {
+  margin-bottom: 0 !important;
 }
 
 /*# sourceMappingURL=main.css.map */
