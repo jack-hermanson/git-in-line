@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Card, CardBody, CardHeader} from "reactstrap";
+import {Card, CardBody, CardHeader} from "reactstrap";
 import {PullRequestRecord} from "../../models/pullRequest";
 import {KeyValTable} from "../Utils/KeyValTable";
 import {PriorityLabel} from "./PriorityLabel";
