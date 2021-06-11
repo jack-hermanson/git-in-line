@@ -29,3 +29,7 @@ export enum Priority {
     MED = 2,
     LOW = 3
 }
+
+export enum SocketEvent {
+    MODIFY_PULL_REQUESTS = "modify_pull_requests"
+}

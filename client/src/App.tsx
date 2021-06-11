@@ -9,6 +9,7 @@ import {LogIn} from "./pages/Account/LogIn";
 import {Alerts} from "./components/Alerts/Alerts";
 import {useEffect} from "react";
 import {useStoreActions, useStoreState} from "./store";
+import {SocketConnection} from "./components/Utils/SocketConnection";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
 
     return (
         <BrowserRouter>
+            <SocketConnection />
             <Layout>
                 <Alerts />
 

@@ -71,7 +71,6 @@ export const store = createStore<StoreModel>({
     editPullRequest: thunk(async (actions, payload) => {
         try {
             await PullRequestClient.edit(payload.pullRequest, payload.token);
-            await actions.loadPullRequests();
             actions.addAlert(successAlert("pull request", "updated"));
         } catch (error) {
             console.error(error.response);
