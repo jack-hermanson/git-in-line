@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {MobileToggleCard} from "../Utils/MobileToggleCard";
-import {FormGroup, Input, Label} from "reactstrap";
+import {Button, FormGroup, Input, Label} from "reactstrap";
 import {PullRequestRecord} from "../../models/pullRequest";
 import {useStoreState} from "../../store";
+import {FilterCheckboxes} from "../Utils/FilterCheckboxes";
 
 interface Props {
     setFilteredPullRequests: (pullRequests: PullRequestRecord[]) => any;
@@ -22,6 +23,7 @@ export const FilterPullRequests: React.FC = () => {
                 {renderPriority()}
                 {renderStatus()}
                 {renderAccounts()}
+                {renderButton()}
             </form>
         </MobileToggleCard>
     );
@@ -34,32 +36,12 @@ export const FilterPullRequests: React.FC = () => {
         ];
 
         return (
-            <FormGroup>
-                <Label className="form-label">Priority</Label>
-                {priorityOptions.map(priorityOption => {
-                    const alreadySelected = selectedPriorities.includes(priorityOption.value);
-                    const id = `priority-checkbox-${priorityOption.value}`;
-                    return (
-                        <FormGroup check>
-                            <Input
-                                onChange={event => {
-                                    const checked = event.target.checked;
-                                    if (checked && !alreadySelected) {
-                                        setSelectedPriorities(s => [...s, priorityOption.value]);
-                                    }
-                                    if (!checked && alreadySelected) {
-                                        setSelectedPriorities(s => s.filter(o => o !== priorityOption.value));
-                                    }
-                                }}
-                                id={id}
-                                type="checkbox"
-                                checked={alreadySelected}
-                            />
-                            <Label for={id} className="form-check-label">{priorityOption.label}</Label>
-                        </FormGroup>
-                    );
-                })}
-            </FormGroup>
+            <FilterCheckboxes
+                label="Priority"
+                options={priorityOptions}
+                selectedItems={selectedPriorities}
+                setSelectedItems={setSelectedPriorities}
+            />
         );
     }
 
@@ -71,65 +53,39 @@ export const FilterPullRequests: React.FC = () => {
         ];
 
         return (
-            <FormGroup>
-                <Label className="form-label">Status</Label>
-                {statusOptions.map(statusOption => {
-                    const alreadySelected = selectedStatuses.includes(statusOption.value);
-                    const id = `status-checkbox-${statusOption.value}`;
-                    return (
-                        <FormGroup check>
-                            <Input
-                                onChange={event => {
-                                    const checked = event.target.checked;
-                                    if (checked && !alreadySelected) {
-                                        setSelectedStatuses(s => [...s, statusOption.value]);
-                                    }
-                                    if (!checked && alreadySelected) {
-                                        setSelectedStatuses(s => s.filter(o => o !== statusOption.value));
-                                    }
-                                }}
-                                id={id}
-                                type="checkbox"
-                                checked={alreadySelected}
-                            />
-                            <Label for={id} className="form-check-label">{statusOption.label}</Label>
-                        </FormGroup>
-                    )
-                })}
-            </FormGroup>
+            <FilterCheckboxes
+                label="Status"
+                options={statusOptions}
+                selectedItems={selectedStatuses}
+                setSelectedItems={setSelectedStatuses}
+            />
         );
     }
 
     function renderAccounts() {
         if (accounts) {
+
+            const accountOptions = accounts.map(account => {
+                return {value: account.id, label: account.username}
+            });
+
             return (
-                <FormGroup>
-                    <Label className="form-label">Users</Label>
-                    {accounts.map(account => {
-                        const id = `account-${account.id}`;
-                        const alreadySelected = selectedAccountIds.includes(account.id);
-                        return (
-                            <FormGroup check>
-                                <Input
-                                    type="checkbox"
-                                    checked={alreadySelected}
-                                    id={id}
-                                    onChange={event => {
-                                        const checked = event.target.checked;
-                                        if (checked && !alreadySelected) {
-                                            setSelectedAccountIds(s => [...s, account.id]);
-                                        }
-                                        if (!checked && alreadySelected) {
-                                            setSelectedAccountIds(s => s.filter(o => o !== account.id))
-                                        }
-                                    }}
-                                />
-                                <Label for={id} className="form-check-label capitalize">{account.username}</Label>
-                            </FormGroup>
-                        );
-                    })}
-                </FormGroup>
-            )
+                <FilterCheckboxes
+                    label="Account"
+                    options={accountOptions}
+                    selectedItems={selectedAccountIds}
+                    setSelectedItems={setSelectedAccountIds}
+                    capitalizeLabels={true}
+                />
+            );
         }
+    }
+
+    function renderButton() {
+        return (
+            <div className="d-grid col-12">
+                <Button size="sm" color="secondary">Reset</Button>
+            </div>
+        );
     }
 }
