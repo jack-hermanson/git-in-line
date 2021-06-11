@@ -7,6 +7,10 @@ export interface PullRequestRequest {
     notes?: string;
 }
 
+export interface EditPullRequestRequest extends PullRequestRequest, BaseModel {
+    status: number;
+}
+
 export interface PullRequestRecord extends PullRequestRequest, BaseModel {
     accountId: number;
     status: number;

@@ -3,9 +3,9 @@ import {Button, Card, CardBody, CardHeader} from "reactstrap";
 import {PullRequestRecord} from "../../models/pullRequest";
 import {KeyValTable} from "../Utils/KeyValTable";
 import {PriorityLabel} from "./PriorityLabel";
-import {formatDateTime, KeyValPair} from "../../utils";
+import {formatDateTime, KeyValPair, scrollToTop} from "../../utils";
 import {StatusLabel} from "./StatusLabel";
-import {useStoreState} from "../../store";
+import {useStoreActions, useStoreState} from "../../store";
 import {StatusModal} from "./StatusModal";
 
 interface Props {
@@ -15,6 +15,8 @@ interface Props {
 export const PullRequest: React.FC<Props> = ({pullRequest}: Props) => {
 
     const accounts = useStoreState(state => state.accounts);
+    const editPullRequest = useStoreActions(actions => actions.editPullRequest);
+    const currentUser = useStoreState(state => state.currentUser);
     const [showStatusModal, setShowStatusModal] = useState(false);
 
     const attributes: KeyValPair[] = [
@@ -56,7 +58,7 @@ export const PullRequest: React.FC<Props> = ({pullRequest}: Props) => {
                     {formatDateTime(pullRequest.created)}
                 </span>
                 <StatusLabel
-                    className="ms-2"
+                    className={`ms-2 ${currentUser?.token && "hover-mouse"}`}
                     status={pullRequest.status}
                     onClick={() => setShowStatusModal(true)}
                 />
@@ -65,15 +67,29 @@ export const PullRequest: React.FC<Props> = ({pullRequest}: Props) => {
     }
 
     function renderModal() {
-        return (
-            <StatusModal
-                pullRequest={pullRequest}
-                isOpen={showStatusModal}
-                toggle={() => setShowStatusModal(o => !o)}
-                save={(status: number) => {
+        if (currentUser?.token) {
+            return (
+                <StatusModal
+                    pullRequest={pullRequest}
+                    isOpen={showStatusModal}
+                    toggle={() => setShowStatusModal(o => !o)}
+                    save={async (status: number) => {
+                        try {
+                            await editPullRequest({
+                                pullRequest: {
+                                    ...pullRequest,
+                                    status: status
+                                },
+                                token: currentUser.token!
+                            });
+                            setShowStatusModal(false);
+                        } catch (error) {
+                            scrollToTop();
+                        }
+                    }}
+                />
+            );
+        }
 
-                }}
-            />
-        )
     }
 }
