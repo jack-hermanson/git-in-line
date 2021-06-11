@@ -1,28 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Button, FormGroup, Input, Label} from "reactstrap";
-import {useStoreState} from "../../store";
-import {useHistory} from "react-router-dom";
-import {PullRequestRequest} from "../../models/pullRequest";
+import {PullRequestRecord, PullRequestRequest} from "../../models/pullRequest";
 
 interface Props {
     onSubmit: (newPr: PullRequestRequest) => any;
+    existingPr?: PullRequestRecord;
 }
 
-export const CreateEditPullRequest: React.FC<Props> = ({onSubmit}) => {
+export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: Props) => {
 
-    const [gitHubUrl, setGitHubUrl] = useState("");
-    const [priority, setPriority] = useState(2);
-    const [jiraUrl, setJiraUrl] = useState("");
-    const [notes, setNotes] = useState("");
-
-    const currentUser = useStoreState(state => state.currentUser);
-    const history = useHistory();
-
-    useEffect(() => {
-        if (!currentUser) {
-            history.push("/account/login");
-        }
-    }, [currentUser, history]);
+    const [gitHubUrl, setGitHubUrl] = useState(existingPr?.gitHubUrl || "");
+    const [priority, setPriority] = useState(existingPr?.priority || 2);
+    const [jiraUrl, setJiraUrl] = useState(existingPr?.jiraUrl || "");
+    const [notes, setNotes] = useState(existingPr?.notes || "");
 
     return (
         <form onSubmit={submit} onReset={reset}>
@@ -46,10 +36,10 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit}) => {
 
     function reset(event: React.FormEvent) {
         event.preventDefault();
-        setGitHubUrl("");
-        setPriority(2);
-        setJiraUrl("");
-        setNotes("");
+        setGitHubUrl(existingPr?.gitHubUrl || "");
+        setPriority(existingPr?.status || 2);
+        setJiraUrl(existingPr?.jiraUrl || "");
+        setNotes(existingPr?.notes || "");
         document.getElementById("github-url")?.focus();
     }
 
@@ -119,7 +109,7 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit}) => {
     function renderButtons() {
         return (
             <div className="bottom-buttons">
-                <Button type="submit" color="success">Create PR</Button>
+                <Button type="submit" color="success">{existingPr ? "Save Changes" : "Create PR"}</Button>
                 <Button type="reset" color="secondary">Reset</Button>
             </div>
         );
