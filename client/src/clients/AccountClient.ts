@@ -26,4 +26,8 @@ export default abstract class AccountClient {
             return undefined;
         }
     }
+
+    static async logOut(token: string) {
+        await axios.post<void>(`${this.baseUrl}/logout`, null, getAuthHeader(token));
+    }
 }

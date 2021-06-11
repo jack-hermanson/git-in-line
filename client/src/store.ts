@@ -7,8 +7,9 @@ import {AlertItem, errorAlert, successAlert} from "./models/alert";
 
 interface StoreModel {
     currentUser: AccountRecord | undefined;
-    setCurrentUser: Action<StoreModel, AccountRecord>;
+    setCurrentUser: Action<StoreModel, AccountRecord | undefined>;
     logIn: Thunk<StoreModel, LoginRequest>;
+    logOut: Thunk<StoreModel, string>;
 
     accounts: AccountRecord[] | undefined;
     setAccounts: Action<StoreModel, AccountRecord[] | undefined>;
@@ -39,6 +40,17 @@ export const store = createStore<StoreModel>({
             console.error(error);
             throw error;
         }
+    }),
+    logOut: thunk(async (actions, token) => {
+        try {
+            await AccountClient.logOut(token);
+        } catch (error) {
+            // something went wrong; maybe the token already expired
+            // it's fine
+            console.error(error);
+        }
+        actions.setCurrentUser(undefined);
+        actions.addAlert(successAlert("user", "logged out"));
     }),
 
     accounts: undefined,
