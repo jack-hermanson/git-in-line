@@ -1,4 +1,4 @@
-import {createStore, createTypedHooks, action, Action, thunk, Thunk, Store} from "easy-peasy";
+import {createStore, createTypedHooks, action, Action, thunk, Thunk} from "easy-peasy";
 import {AccountRecord, LoginRequest} from "./models/account";
 import AccountClient from "./clients/AccountClient";
 import PullRequestClient from "./clients/PullRequestClient";
@@ -9,6 +9,10 @@ interface StoreModel {
     currentUser: AccountRecord | undefined;
     setCurrentUser: Action<StoreModel, AccountRecord>;
     logIn: Thunk<StoreModel, LoginRequest>;
+
+    accounts: AccountRecord[] | undefined;
+    setAccounts: Action<StoreModel, AccountRecord[] | undefined>;
+    loadAccounts: Thunk<StoreModel, string>;
 
     pullRequests: PullRequestRecord[] | undefined;
     setPullRequests: Action<StoreModel, PullRequestRecord[]>;
@@ -34,6 +38,14 @@ export const store = createStore<StoreModel>({
             console.error(error);
             throw error;
         }
+    }),
+
+    accounts: undefined,
+    setAccounts: action((state, payload) => {
+        state.accounts = payload;
+    }),
+    loadAccounts: thunk(async (actions, token) => {
+        actions.setAccounts(await AccountClient.fetchAccounts(token));
     }),
 
     pullRequests: undefined,

@@ -8,15 +8,20 @@ import {Create as NewPullRequest} from "./pages/PullRequests/Create";
 import {LogIn} from "./pages/Account/LogIn";
 import {Alerts} from "./components/Alerts/Alerts";
 import {useEffect} from "react";
-import {useStoreActions} from "./store";
+import {useStoreActions, useStoreState} from "./store";
 
 function App() {
 
     const loadPullRequests = useStoreActions(actions => actions.loadPullRequests);
+    const currentUser = useStoreState(state => state.currentUser);
+    const loadAccounts = useStoreActions(actions => actions.loadAccounts);
 
     useEffect(() => {
         loadPullRequests();
-    });
+        if (currentUser?.token) {
+            loadAccounts(currentUser.token);
+        }
+    }, [loadPullRequests, currentUser, loadAccounts]);
 
     return (
         <BrowserRouter>

@@ -4,9 +4,10 @@ import {Badge} from "reactstrap";
 interface Props {
     status: number;
     className?: string;
+    onClick?: () => any;
 }
 
-export const StatusLabel: React.FC<Props> = ({status, className}: Props) => {
+export const StatusLabel: React.FC<Props> = ({status, className, onClick}: Props) => {
 
     let color, text;
     switch (status) {
@@ -15,16 +16,16 @@ export const StatusLabel: React.FC<Props> = ({status, className}: Props) => {
             text = "Pending";
             break;
         case 2:
-            color = "success";
-            text = "Approved";
-            break;
-        case 3:
             color = "danger";
             text = "Changes Requested"
+            break;
+        case 3:
+            color = "success";
+            text = "Approved";
             break;
     }
 
     return (
-        <Badge className={className} color={color}>{text}</Badge>
+        <Badge onClick={onClick} className={className} color={color}>{text}</Badge>
     );
 }

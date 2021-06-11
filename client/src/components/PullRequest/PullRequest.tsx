@@ -1,10 +1,12 @@
-import React from "react";
-import {Card, CardBody, CardHeader} from "reactstrap";
+import React, {useState} from "react";
+import {Button, Card, CardBody, CardHeader} from "reactstrap";
 import {PullRequestRecord} from "../../models/pullRequest";
 import {KeyValTable} from "../Utils/KeyValTable";
 import {PriorityLabel} from "./PriorityLabel";
 import {formatDateTime, KeyValPair} from "../../utils";
 import {StatusLabel} from "./StatusLabel";
+import {useStoreState} from "../../store";
+import {StatusModal} from "./StatusModal";
 
 interface Props {
     pullRequest: PullRequestRecord;
@@ -12,17 +14,28 @@ interface Props {
 
 export const PullRequest: React.FC<Props> = ({pullRequest}: Props) => {
 
+    const accounts = useStoreState(state => state.accounts);
+    const [showStatusModal, setShowStatusModal] = useState(false);
+
     const attributes: KeyValPair[] = [
-        {key: "GitHub URL", val: <a href={pullRequest.gitHubUrl} rel="nofollow" target="_blank">{pullRequest.gitHubUrl}</a>},
+        {key: "GitHub URL", val: <a href={pullRequest.gitHubUrl} rel="noreferrer" target="_blank">{pullRequest.gitHubUrl}</a>},
         {key: "Priority", val: <PriorityLabel priority={pullRequest.priority} />}
     ];
 
     if (pullRequest.notes) {
         attributes.push({key: "Notes", val: pullRequest.notes});
     }
+    if (accounts) {
+        const account = accounts.find(a => a.id === pullRequest.accountId);
+        attributes.push({key: "User", val: account!.username})
+    }
     if (pullRequest.updated !== pullRequest.created) {
         attributes.push({key: "Updated", val: formatDateTime(pullRequest.updated)});
     }
+    if (pullRequest.jiraUrl) {
+        attributes.push({key: "JIRA URL", val: <a target="_blank" rel="noreferrer" href={pullRequest.jiraUrl}>{pullRequest.jiraUrl}</a>})
+    }
+
 
     return (
         <Card className="mb-3 no-mb-last">
@@ -32,6 +45,7 @@ export const PullRequest: React.FC<Props> = ({pullRequest}: Props) => {
             <CardBody className="p-0">
                 <KeyValTable keyValPairs={attributes} className="card-table mb-0 table-striped same-width" />
             </CardBody>
+            {renderModal()}
         </Card>
     );
 
@@ -44,8 +58,22 @@ export const PullRequest: React.FC<Props> = ({pullRequest}: Props) => {
                 <StatusLabel
                     className="ms-2"
                     status={pullRequest.status}
+                    onClick={() => setShowStatusModal(true)}
                 />
             </h5>
+        );
+    }
+
+    function renderModal() {
+        return (
+            <StatusModal
+                pullRequest={pullRequest}
+                isOpen={showStatusModal}
+                toggle={() => setShowStatusModal(o => !o)}
+                save={(status: number) => {
+
+                }}
+            />
         )
     }
 }
