@@ -23,6 +23,10 @@ router.post("/", auth, async (req: AuthRequest<NewPrRequest>, res: Response) => 
         const pullRequest = await PullRequestService.create(requestBody, req.account, res);
         if (!pullRequest) return;
 
+        // socket
+        const socket: Socket = req.app.get("socketio");
+        socket.emit(SocketEvent.MODIFY_PULL_REQUESTS);
+
         res.status(HTTP.CREATED).json(pullRequest);
 
     } catch (error) {

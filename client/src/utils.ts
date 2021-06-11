@@ -33,3 +33,7 @@ export const formatTime = (date: Date): string => {
 export const formatDateTime = (date: Date): string => {
     return `${formatDate(date)} ${formatTime(date)}`;
 }
+
+export enum SocketEvent {
+    MODIFY_PULL_REQUESTS = "modify_pull_requests"
+}
