@@ -7,15 +7,17 @@ import {LoadingSpinner} from "../../components/Utils/LoadingSpinner";
 import {useStoreState} from "../../store";
 import {PullRequest} from "../../components/PullRequest/PullRequest";
 import {FilterPullRequests} from "../../components/PullRequest/FilterPullRequests";
+import {PullRequestRecord} from "../../models/pullRequest";
 
 export const Index: React.FC = () => {
 
     const pullRequests = useStoreState(state => state.pullRequests);
-    const [filteredPullRequests, setFilteredPullRequests] = useState(pullRequests);
+    const [filteredPullRequests, setFilteredPullRequests] = useState<PullRequestRecord[]>([]);
 
     useEffect(() => {
         document.title = `${APP_NAME} | Pull Requests`;
-    });
+        setFilteredPullRequests(pullRequests || []);
+    }, [setFilteredPullRequests, pullRequests]);
 
     return (
         <React.Fragment>
