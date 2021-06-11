@@ -7,6 +7,7 @@ import {formatDateTime, KeyValPair, scrollToTop} from "../../utils";
 import {StatusLabel} from "./StatusLabel";
 import {useStoreActions, useStoreState} from "../../store";
 import {StatusModal} from "./StatusModal";
+import {Link} from "react-router-dom";
 
 interface Props {
     pullRequest: PullRequestRecord;
@@ -41,8 +42,11 @@ export const PullRequest: React.FC<Props> = ({pullRequest}: Props) => {
 
     return (
         <Card className="mb-3 no-mb-last">
-            <CardHeader>
+            <CardHeader className="d-flex">
                 {renderTitle()}
+                {currentUser?.token && (
+                    <Link className="ms-auto" to={`/pull-requests/edit/${pullRequest.id}`}>Edit</Link>
+                )}
             </CardHeader>
             <CardBody className="p-0">
                 <KeyValTable keyValPairs={attributes} className="card-table mb-0 table-striped same-width" />
