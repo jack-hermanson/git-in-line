@@ -1,10 +1,11 @@
 import express, {Response} from "express";
-import {AuthRequest, HTTP} from "../utils/types";
+import {AuthRequest, HTTP, SocketEvent} from "../utils/types";
 import {sendError} from "../utils/utils";
 import {validateRequest} from "../utils/validation";
 import {auth} from "../middleware/auth";
 import PullRequestService from "../services/PullRequestService";
 import {EditPrRequest, editPrSchema, NewPrRequest, newPrSchema} from "../models/PullRequest";
+import {Socket} from "socket.io";
 
 export const router = express.Router();
 
@@ -39,6 +40,10 @@ router.put("/:id", auth, async (req: AuthRequest<EditPrRequest & {id: number}>, 
 
         const editedPr = await PullRequestService.edit(requestBody, id, res);
         if (!editedPr) return;
+
+        // socket
+        const socket: Socket = req.app.get("socketio");
+        socket.emit(SocketEvent.MODIFY_PULL_REQUESTS);
 
         res.json(editedPr);
     } catch (error) {
