@@ -21,7 +21,10 @@ export default abstract class PullRequestService {
     // get pull requests
     static async getAll(): Promise<PullRequest[]> {
         const { pullRequestRepo } = getRepos();
-        return await pullRequestRepo.find();
+        return await pullRequestRepo
+            .createQueryBuilder("pullRequest")
+            .orderBy("updated", "DESC")
+            .getMany();
     }
 
     // new PR
