@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {MobileToggleCard} from "../Utils/MobileToggleCard";
-import {Button, FormGroup, Input, Label} from "reactstrap";
+import {Button} from "reactstrap";
 import {PullRequestRecord} from "../../../../shared/src/resource_models/pullRequest";
 import {useStoreState} from "../../store";
 import {FilterCheckboxes} from "../Utils/FilterCheckboxes";
+import {PriorityLabels} from "../../../../shared/src/enums";
 
 interface Props {
     setFilteredPullRequests: (pullRequests: PullRequestRecord[]) => any;
@@ -29,11 +30,12 @@ export const FilterPullRequests: React.FC = () => {
     );
 
     function renderPriority() {
-        const priorityOptions = [
-            {value: 3, label: "Low"},
-            {value: 2, label: "Medium"},
-            {value: 1, label: "High"}
-        ];
+        const priorityOptions = Array.from(PriorityLabels).map(p => {
+            return {
+                value: p[0],
+                label: p[1]
+            };
+        });
 
         return (
             <FilterCheckboxes
