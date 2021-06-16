@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Button, FormGroup, Input, Label} from "reactstrap";
-import {PullRequestRecord, NewPrRequest} from "../../../../shared/src/resource_models/pullRequest";
+import {NewPrRequest, PullRequestRecord} from "../../../../shared/src/resource_models/pullRequest";
+import {Priority} from "../../../../shared/src/enums";
 
 interface Props {
     onSubmit: (newPr: NewPrRequest) => any;
@@ -10,7 +11,7 @@ interface Props {
 export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: Props) => {
 
     const [gitHubUrl, setGitHubUrl] = useState(existingPr?.gitHubUrl || "");
-    const [priority, setPriority] = useState(existingPr?.priority || 2);
+    const [priority, setPriority] = useState(existingPr?.priority || Priority.MED);
     const [jiraUrl, setJiraUrl] = useState(existingPr?.jiraUrl || "");
     const [notes, setNotes] = useState(existingPr?.notes || "");
 
@@ -37,7 +38,7 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: P
     function reset(event: React.FormEvent) {
         event.preventDefault();
         setGitHubUrl(existingPr?.gitHubUrl || "");
-        setPriority(existingPr?.status || 2);
+        setPriority(existingPr?.priority || Priority.MED);
         setJiraUrl(existingPr?.jiraUrl || "");
         setNotes(existingPr?.notes || "");
         document.getElementById("github-url")?.focus();
@@ -66,9 +67,9 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: P
             <FormGroup>
                 <Label for={id} className="form-label required">Priority</Label>
                 <Input type="select" value={priority} onChange={e => setPriority(parseInt(e.target.value))}>
-                    <option value={3}>Low</option>
-                    <option value={2}>Medium</option>
-                    <option value={1}>High</option>
+                    <option value={Priority.LOW}>Low</option>
+                    <option value={Priority.MED}>Medium</option>
+                    <option value={Priority.HIGH}>High</option>
                 </Input>
             </FormGroup>
         );

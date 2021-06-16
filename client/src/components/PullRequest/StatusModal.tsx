@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Button, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {PullRequestRecord} from "../../../../shared/src/resource_models/pullRequest";
+import {PrStatus} from "../../../../shared/src/enums";
 
 interface Props {
     pullRequest: PullRequestRecord;
@@ -25,9 +26,9 @@ export const StatusModal: React.FC<Props> = ({pullRequest, isOpen, toggle, save}
                 <ModalBody>
                     <Label className="form-label">Status</Label>
                     <Input type="select" value={status} onChange={e => setStatus(parseInt(e.target.value))}>
-                        <option value={1}>Pending</option>
-                        <option value={2}>Changes Requested</option>
-                        <option value={3}>Approved</option>
+                        <option value={PrStatus.PENDING}>Pending</option>
+                        <option value={PrStatus.CHANGES}>Changes Requested</option>
+                        <option value={PrStatus.APPROVED}>Approved</option>
                     </Input>
                 </ModalBody>
                 <ModalFooter>
