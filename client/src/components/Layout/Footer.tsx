@@ -13,7 +13,7 @@ import supportCsu from "../../images/support-csu-nb.svg";
 
 export const Footer: React.FC = () => {
     return (
-        <footer className="footer">
+        <footer className="footer mt-4">
             <div className="upper-footer">
                 <Container fluid={CONTAINER_FLUID}>
                     <Row>
