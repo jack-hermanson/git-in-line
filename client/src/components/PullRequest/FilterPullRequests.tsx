@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { MobileToggleCard } from "../Utils/MobileToggleCard";
 import { Button } from "reactstrap";
 import { PullRequestRecord } from "../../../../shared/src/resource_models/pullRequest";
@@ -11,12 +11,39 @@ interface Props {
     setFilteredPullRequests: (pullRequests: PullRequestRecord[]) => any;
 }
 
-export const FilterPullRequests: React.FC = () => {
+export const FilterPullRequests: React.FC<Props> = ({
+    setFilteredPullRequests,
+}: Props) => {
     const [selectedPriorities, setSelectedPriorities] = useState<number[]>([]);
     const [selectedStatuses, setSelectedStatuses] = useState<number[]>([]);
     const [selectedAccountIds, setSelectedAccountIds] = useState<number[]>([]);
 
     const accounts = useStoreState((state) => state.accounts);
+    const pullRequests = useStoreState((state) => state.pullRequests);
+
+    const filter = useCallback(
+        (selectedPriorities, selectedStatuses, selectedAccountIds) => {
+            if (pullRequests) {
+                setFilteredPullRequests(
+                    pullRequests.filter((pr) => {
+                        return (
+                            (selectedPriorities.includes(pr.priority) ||
+                                !selectedPriorities.length) &&
+                            (selectedStatuses.includes(pr.status) ||
+                                !selectedStatuses.length) &&
+                            (selectedAccountIds.includes(pr.accountId) ||
+                                !selectedAccountIds.length)
+                        );
+                    })
+                );
+            }
+        },
+        [pullRequests, setFilteredPullRequests]
+    );
+
+    useEffect(() => {
+        filter(selectedPriorities, selectedStatuses, selectedAccountIds);
+    }, [filter, selectedPriorities, selectedStatuses, selectedAccountIds]);
 
     return (
         <MobileToggleCard
@@ -81,10 +108,21 @@ export const FilterPullRequests: React.FC = () => {
     function renderButton() {
         return (
             <div className="d-grid col-12">
-                <Button size="sm" color="secondary">
+                <Button
+                    onClick={() => reset()}
+                    type="reset"
+                    size="sm"
+                    color="secondary"
+                >
                     Reset
                 </Button>
             </div>
         );
+    }
+
+    function reset() {
+        setSelectedPriorities([]);
+        setSelectedStatuses([]);
+        setSelectedAccountIds([]);
     }
 };
