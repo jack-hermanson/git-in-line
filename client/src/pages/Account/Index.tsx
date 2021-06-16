@@ -2,15 +2,16 @@ import React, { useEffect } from "react";
 import { Col, Row } from "reactstrap";
 import { PageTitle } from "../../components/Layout/PageTitle";
 import { APP_NAME } from "../../utils/constants";
-import { useStoreState } from "../../store";
+import { useStoreActions, useStoreState } from "../../store";
 import { useHistory } from "react-router-dom";
 import { PullRequest } from "../../components/PullRequest/PullRequest";
 import { AccountDetailsForm } from "../../components/Account/AccountDetailsForm";
-import { capitalizeFirstLetter } from "../../utils/utils";
+import { capitalizeFirstLetter, scrollToTop } from "../../utils/utils";
 
 export const Index: React.FC = () => {
     const currentUser = useStoreState((state) => state.currentUser);
     const pullRequests = useStoreState((state) => state.pullRequests);
+    const editAccount = useStoreActions((actions) => actions.editAccount);
     const history = useHistory();
 
     useEffect(() => {
@@ -38,8 +39,18 @@ export const Index: React.FC = () => {
                             <h4>Account Details</h4>
                             <AccountDetailsForm
                                 account={currentUser}
-                                onSubmit={(editedAccount) => {
-                                    console.log(editedAccount);
+                                onSubmit={async (editedAccount) => {
+                                    console.log("submit");
+                                    if (currentUser?.token) {
+                                        try {
+                                            await editAccount({
+                                                token: currentUser.token,
+                                                editedAccount: editedAccount,
+                                            });
+                                        } catch (error) {
+                                            scrollToTop();
+                                        }
+                                    }
                                 }}
                             />
                         </div>
@@ -49,7 +60,7 @@ export const Index: React.FC = () => {
                         {pullRequests
                             .filter((o) => o.accountId === currentUser.id)
                             .map((pr) => (
-                                <PullRequest pullRequest={pr} />
+                                <PullRequest key={pr.id} pullRequest={pr} />
                             ))}
                     </Col>
                 </Row>

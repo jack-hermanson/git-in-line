@@ -1,8 +1,9 @@
 import express, { Response } from "express";
 import { AuthRequest } from "../utils/types";
 import { HTTP } from "../../../shared/src/enums";
-import { newAccountSchema } from "../models/Account";
+import { editAccountSchema, newAccountSchema } from "../models/Account";
 import {
+    EditAccountRequest,
     LoginRequest,
     NewAccountRequest,
 } from "../../../shared/src/resource_models/account";
@@ -72,3 +73,32 @@ router.post("/logout", auth, async (req: AuthRequest<any>, res: Response) => {
     await AccountService.logOut(req.account);
     res.sendStatus(HTTP.OK);
 });
+
+// edit account
+router.put(
+    "/",
+    auth,
+    async (req: AuthRequest<EditAccountRequest>, res: Response) => {
+        try {
+            if (!(await validateRequest(editAccountSchema, req, res))) {
+                return;
+            }
+            const requestBody: EditAccountRequest = req.body;
+            requestBody.username = requestBody.username.toLowerCase();
+
+            const editedAccount = await AccountService.edit(
+                req.account,
+                requestBody,
+                res
+            );
+
+            if (!editedAccount) {
+                return;
+            }
+
+            res.json(editedAccount);
+        } catch (error) {
+            sendError(error, res);
+        }
+    }
+);

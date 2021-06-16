@@ -1,5 +1,6 @@
 import { Account } from "../models/Account";
 import {
+    EditAccountRequest,
     LoginRequest,
     NewAccountRequest,
 } from "../../../shared/src/resource_models/account";
@@ -27,13 +28,14 @@ export default abstract class AccountService {
         const { accountRepo } = getRepos();
 
         // check for existing account
+        newAccount.username = newAccount.username.toLowerCase();
         if (
             !(await doesNotConflict({
                 repo: accountRepo,
                 properties: [
                     {
                         name: "username",
-                        value: newAccount.username.toLowerCase(),
+                        value: newAccount.username,
                     },
                 ],
                 res: res,
@@ -46,7 +48,7 @@ export default abstract class AccountService {
         const salt = await bcrypt.genSalt(10);
 
         const account = new Account();
-        account.username = newAccount.username.toLowerCase();
+        account.username = newAccount.username;
         account.password = await bcrypt.hash(newAccount.password, salt);
 
         return await accountRepo.save(account);
@@ -110,5 +112,28 @@ export default abstract class AccountService {
             ...account,
             token: undefined,
         });
+    }
+
+    // edit
+    static async edit(
+        existingAccount: Account,
+        newAccount: EditAccountRequest,
+        res: Response
+    ): Promise<Account | undefined> {
+        const { accountRepo } = getRepos();
+
+        newAccount.username = newAccount.username.toLowerCase();
+        if (
+            !(await doesNotConflict({
+                repo: accountRepo,
+                properties: [{ name: "username", value: newAccount.username }],
+                res: res,
+                existingRecord: existingAccount,
+            }))
+        ) {
+            return undefined;
+        }
+
+        return await accountRepo.save({ ...existingAccount, ...newAccount });
     }
 }
