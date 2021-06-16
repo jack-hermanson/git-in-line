@@ -1,5 +1,6 @@
 import {Response} from "express";
-import {AuthRequest, HTTP} from "../utils/types";
+import {HTTP} from "../../../shared/src/enums";
+import {AuthRequest} from "../utils/types";
 import * as jwt from "jsonwebtoken";
 import {getConnection} from "typeorm";
 import {Account} from "../models/Account";

@@ -1,7 +1,7 @@
 import Joi from "joi";
 import {AuthRequest} from "./types";
 import {Response} from "express";
-import {HTTP} from "./types";
+import {HTTP} from "../../../shared/src/enums";
 import {Repository} from "typeorm";
 
 /*

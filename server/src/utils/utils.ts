@@ -1,5 +1,5 @@
 import {TableColumnOptions} from "typeorm/schema-builder/options/TableColumnOptions";
-import {HTTP} from "./types";
+import {HTTP} from "../../../shared/src/enums";
 import {Response} from "express";
 
 export const idColumn: TableColumnOptions = {

@@ -6,7 +6,7 @@ import {RouteComponentProps} from "react-router";
 import {useStoreActions, useStoreState} from "../../store";
 import {LoadingSpinner} from "../../components/Utils/LoadingSpinner";
 import {CreateEditPullRequest} from "../../components/PullRequest/CreateEditPullRequest";
-import {PullRequestRequest} from "../../../../shared/src/resource_models/pullRequest";
+import {NewPrRequest} from "../../../../shared/src/resource_models/pullRequest";
 import {scrollToTop} from "../../utils/utils";
 
 export const Edit: React.FC<RouteComponentProps<{ id: string }>> = ({match}) => {
@@ -41,7 +41,7 @@ export const Edit: React.FC<RouteComponentProps<{ id: string }>> = ({match}) => 
         </React.Fragment>
     );
 
-   async function submit(newPr: PullRequestRequest) {
+   async function submit(newPr: NewPrRequest) {
        if (currentUser?.token && pullRequest) {
            try {
                await editPullRequest({

@@ -1,19 +1,19 @@
 import {ResourceModel} from "./_resourceModel";
+import {Priority, PrStatus} from "../enums";
 
-export interface PullRequestRequest {
+export interface NewPrRequest {
     gitHubUrl: string;
-    priority: number;
+    priority: Priority;
     jiraUrl?: string;
     notes?: string;
 }
 
-export interface EditPullRequestRequest extends PullRequestRequest, ResourceModel {
-    status: number;
+export interface EditPrRequest extends NewPrRequest, ResourceModel {
+    status: PrStatus;
 }
 
-export interface PullRequestRecord extends PullRequestRequest, ResourceModel {
+export interface PullRequestRecord extends NewPrRequest, ResourceModel, EditPrRequest {
     accountId: number;
-    status: number;
     created: Date;
     updated: Date;
 }

@@ -1,6 +1,6 @@
 import {Account} from "../models/Account";
 import {LoginRequest, NewAccountRequest} from "../../../shared/src/resource_models/account";
-import {HTTP} from "../utils/types";
+import {HTTP} from "../../../shared/src/enums";
 import {getConnection, Repository} from "typeorm";
 import {doesNotConflict} from "../utils/validation";
 import {Response} from "express";

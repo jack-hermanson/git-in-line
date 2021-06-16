@@ -1,5 +1,6 @@
 import express, {Response} from "express";
-import {AuthRequest, HTTP} from "../utils/types";
+import {AuthRequest} from "../utils/types";
+import {HTTP} from "../../../shared/src/enums";
 import {newAccountSchema} from "../models/Account";
 import {LoginRequest, NewAccountRequest} from "../../../shared/src/resource_models/account";
 import {sendError} from "../utils/utils";

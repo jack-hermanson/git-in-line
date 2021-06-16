@@ -1,10 +1,12 @@
 import express, {Response} from "express";
-import {AuthRequest, HTTP, SocketEvent} from "../utils/types";
+import {AuthRequest} from "../utils/types";
+import {HTTP, SocketEvent} from "../../../shared/src/enums";
 import {sendError} from "../utils/utils";
 import {validateRequest} from "../utils/validation";
 import {auth} from "../middleware/auth";
 import PullRequestService from "../services/PullRequestService";
-import {EditPrRequest, editPrSchema, NewPrRequest, newPrSchema} from "../models/PullRequest";
+import {editPrSchema, newPrSchema} from "../models/PullRequest";
+import {NewPrRequest, EditPrRequest} from "../../../shared/src/resource_models/pullRequest";
 import {Socket} from "socket.io";
 
 export const router = express.Router();

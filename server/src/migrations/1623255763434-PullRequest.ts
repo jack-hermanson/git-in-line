@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 import {idColumn} from "../utils/utils";
-import {Priority, PrStatus} from "../utils/types";
+import {Priority, PrStatus} from "../../../shared/src/enums";
 
 export class PullRequest1623255763434 implements MigrationInterface {
 

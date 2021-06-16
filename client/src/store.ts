@@ -2,7 +2,7 @@ import {createStore, createTypedHooks, action, Action, thunk, Thunk} from "easy-
 import {AccountRecord, LoginRequest} from "../../shared/src/resource_models/account";
 import AccountClient from "./clients/AccountClient";
 import PullRequestClient from "./clients/PullRequestClient";
-import {EditPullRequestRequest, PullRequestRecord, PullRequestRequest} from "../../shared/src/resource_models/pullRequest";
+import {EditPrRequest, PullRequestRecord, NewPrRequest} from "../../shared/src/resource_models/pullRequest";
 import {AlertItem, errorAlert, successAlert} from "./utils/alert";
 
 interface StoreModel {
@@ -17,9 +17,9 @@ interface StoreModel {
 
     pullRequests: PullRequestRecord[] | undefined;
     setPullRequests: Action<StoreModel, PullRequestRecord[]>;
-    savePullRequest: Thunk<StoreModel, { pullRequest: PullRequestRequest; token: string; }>;
+    savePullRequest: Thunk<StoreModel, { pullRequest: NewPrRequest; token: string; }>;
     loadPullRequests: Thunk<StoreModel>;
-    editPullRequest: Thunk<StoreModel, { pullRequest: EditPullRequestRequest; token: string; }>;
+    editPullRequest: Thunk<StoreModel, { pullRequest: EditPrRequest; token: string; }>;
 
     alerts: AlertItem[];
     setAlerts: Action<StoreModel, AlertItem[]>;

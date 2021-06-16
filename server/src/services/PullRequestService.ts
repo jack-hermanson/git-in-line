@@ -1,8 +1,9 @@
-import {HTTP, Priority} from "../utils/types";
+import {HTTP} from "../../../shared/src/enums";
 import {getConnection, Repository} from "typeorm";
 import {doesNotConflict} from "../utils/validation";
 import {Response} from "express";
-import {PullRequest, NewPrRequest, EditPrRequest} from "../models/PullRequest";
+import {PullRequest} from "../models/PullRequest";
+import {NewPrRequest, EditPrRequest} from "../../../shared/src/resource_models/pullRequest";
 import {Account} from "../models/Account";
 
 const getRepos = (): {
