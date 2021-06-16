@@ -29,6 +29,10 @@ export const formatDate = (date: Date): string => {
     });
 };
 
+export const removeTime = (date: Date): Date => {
+    return new Date(new Date(date).setHours(0, 0, 0));
+};
+
 export const formatTime = (date: Date): string => {
     return new Date(date).toLocaleTimeString([], {
         hour: "numeric",
