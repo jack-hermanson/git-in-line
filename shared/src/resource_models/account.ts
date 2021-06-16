@@ -1,4 +1,4 @@
-import {ResourceModel} from "./_resourceModel";
+import { ResourceModel } from "./_resourceModel";
 
 export interface AccountRecord extends ResourceModel {
     username: string;

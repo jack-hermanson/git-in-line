@@ -1,5 +1,5 @@
 import React from "react";
-import {Badge} from "reactstrap";
+import { Badge } from "reactstrap";
 
 interface Props {
     status: number;
@@ -7,8 +7,11 @@ interface Props {
     onClick?: () => any;
 }
 
-export const StatusLabel: React.FC<Props> = ({status, className, onClick}: Props) => {
-
+export const StatusLabel: React.FC<Props> = ({
+    status,
+    className,
+    onClick,
+}: Props) => {
     let color, text;
     switch (status) {
         case 1:
@@ -17,7 +20,7 @@ export const StatusLabel: React.FC<Props> = ({status, className, onClick}: Props
             break;
         case 2:
             color = "danger";
-            text = "Changes Requested"
+            text = "Changes Requested";
             break;
         case 3:
             color = "success";
@@ -26,6 +29,8 @@ export const StatusLabel: React.FC<Props> = ({status, className, onClick}: Props
     }
 
     return (
-        <Badge onClick={onClick} className={className} color={color}>{text}</Badge>
+        <Badge onClick={onClick} className={className} color={color}>
+            {text}
+        </Badge>
     );
-}
+};

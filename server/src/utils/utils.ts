@@ -1,13 +1,13 @@
-import {TableColumnOptions} from "typeorm/schema-builder/options/TableColumnOptions";
-import {HTTP} from "../../../shared/src/enums";
-import {Response} from "express";
+import { TableColumnOptions } from "typeorm/schema-builder/options/TableColumnOptions";
+import { HTTP } from "../../../shared/src/enums";
+import { Response } from "express";
 
 export const idColumn: TableColumnOptions = {
     name: "id",
     type: "integer",
     isPrimary: true,
     isGenerated: true,
-    generationStrategy: "increment"
+    generationStrategy: "increment",
 };
 
 export const sendError = (error: Error, res: Response) => {

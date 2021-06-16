@@ -5,13 +5,10 @@ interface Props {
     className?: string;
 }
 
-export const LoadingSpinner: React.FC<Props> = ({className}) => {
+export const LoadingSpinner: React.FC<Props> = ({ className }) => {
     return (
         <div className={className}>
-            <Loader
-                type="ThreeDots"
-                color="#1e4d2b"
-            />
+            <Loader type="ThreeDots" color="#1e4d2b" />
         </div>
     );
-}
+};

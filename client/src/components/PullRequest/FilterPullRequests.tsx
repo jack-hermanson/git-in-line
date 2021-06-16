@@ -1,25 +1,27 @@
-import React, {useState} from "react";
-import {MobileToggleCard} from "../Utils/MobileToggleCard";
-import {Button} from "reactstrap";
-import {PullRequestRecord} from "../../../../shared/src/resource_models/pullRequest";
-import {useStoreState} from "../../store";
-import {FilterCheckboxes} from "../Utils/FilterCheckboxes";
-import {PriorityLabels} from "../../../../shared/src/enums";
+import React, { useState } from "react";
+import { MobileToggleCard } from "../Utils/MobileToggleCard";
+import { Button } from "reactstrap";
+import { PullRequestRecord } from "../../../../shared/src/resource_models/pullRequest";
+import { useStoreState } from "../../store";
+import { FilterCheckboxes } from "../Utils/FilterCheckboxes";
+import { PriorityLabels } from "../../../../shared/src/enums";
 
 interface Props {
     setFilteredPullRequests: (pullRequests: PullRequestRecord[]) => any;
 }
 
 export const FilterPullRequests: React.FC = () => {
-
     const [selectedPriorities, setSelectedPriorities] = useState<number[]>([]);
     const [selectedStatuses, setSelectedStatuses] = useState<number[]>([]);
     const [selectedAccountIds, setSelectedAccountIds] = useState<number[]>([]);
 
-    const accounts = useStoreState(state => state.accounts);
+    const accounts = useStoreState((state) => state.accounts);
 
     return (
-        <MobileToggleCard cardTitle="Filter" className="mb-3 mb-lg-0 sticky-top">
+        <MobileToggleCard
+            cardTitle="Filter"
+            className="mb-3 mb-lg-0 sticky-top"
+        >
             <form>
                 {renderPriority()}
                 {renderStatus()}
@@ -30,10 +32,10 @@ export const FilterPullRequests: React.FC = () => {
     );
 
     function renderPriority() {
-        const priorityOptions = Array.from(PriorityLabels).map(p => {
+        const priorityOptions = Array.from(PriorityLabels).map((p) => {
             return {
                 value: p[0],
-                label: p[1]
+                label: p[1],
             };
         });
 
@@ -49,9 +51,9 @@ export const FilterPullRequests: React.FC = () => {
 
     function renderStatus() {
         const statusOptions = [
-            {value: 1, label: "Pending"},
-            {value: 2, label: "Changes Requested"},
-            {value: 3, label: "Approved"}
+            { value: 1, label: "Pending" },
+            { value: 2, label: "Changes Requested" },
+            { value: 3, label: "Approved" },
         ];
 
         return (
@@ -66,9 +68,8 @@ export const FilterPullRequests: React.FC = () => {
 
     function renderAccounts() {
         if (accounts) {
-
-            const accountOptions = accounts.map(account => {
-                return {value: account.id, label: account.username}
+            const accountOptions = accounts.map((account) => {
+                return { value: account.id, label: account.username };
             });
 
             return (
@@ -86,8 +87,10 @@ export const FilterPullRequests: React.FC = () => {
     function renderButton() {
         return (
             <div className="d-grid col-12">
-                <Button size="sm" color="secondary">Reset</Button>
+                <Button size="sm" color="secondary">
+                    Reset
+                </Button>
             </div>
         );
     }
-}
+};

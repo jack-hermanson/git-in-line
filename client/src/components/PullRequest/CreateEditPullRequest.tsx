@@ -1,18 +1,25 @@
-import React, {useState} from "react";
-import {Button, FormGroup, Input, Label} from "reactstrap";
-import {NewPrRequest, PullRequestRecord} from "../../../../shared/src/resource_models/pullRequest";
-import {Priority, PriorityLabels} from "../../../../shared/src/enums";
-import {InputSelectEnum} from "../Utils/InputSelectEnum";
+import React, { useState } from "react";
+import { Button, FormGroup, Input, Label } from "reactstrap";
+import {
+    NewPrRequest,
+    PullRequestRecord,
+} from "../../../../shared/src/resource_models/pullRequest";
+import { Priority, PriorityLabels } from "../../../../shared/src/enums";
+import { InputSelectEnum } from "../Utils/InputSelectEnum";
 
 interface Props {
     onSubmit: (newPr: NewPrRequest) => any;
     existingPr?: PullRequestRecord;
 }
 
-export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: Props) => {
-
+export const CreateEditPullRequest: React.FC<Props> = ({
+    onSubmit,
+    existingPr,
+}: Props) => {
     const [gitHubUrl, setGitHubUrl] = useState(existingPr?.gitHubUrl || "");
-    const [priority, setPriority] = useState(existingPr?.priority || Priority.MED);
+    const [priority, setPriority] = useState(
+        existingPr?.priority || Priority.MED
+    );
     const [jiraUrl, setJiraUrl] = useState(existingPr?.jiraUrl || "");
     const [notes, setNotes] = useState(existingPr?.notes || "");
 
@@ -32,7 +39,7 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: P
             gitHubUrl,
             priority,
             jiraUrl: jiraUrl.length ? jiraUrl : undefined,
-            notes: notes.length ? notes : undefined
+            notes: notes.length ? notes : undefined,
         });
     }
 
@@ -49,13 +56,15 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: P
         const id = "github-url";
         return (
             <FormGroup>
-                <Label for={id} className="form-label required">GitHub URL</Label>
+                <Label for={id} className="form-label required">
+                    GitHub URL
+                </Label>
                 <Input
                     id={id}
                     type="url"
                     autoFocus
                     required
-                    onChange={e => setGitHubUrl(e.target.value)}
+                    onChange={(e) => setGitHubUrl(e.target.value)}
                     value={gitHubUrl}
                 />
             </FormGroup>
@@ -66,9 +75,11 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: P
         const id = "priority";
         return (
             <FormGroup>
-                <Label for={id} className="form-label required">Priority</Label>
+                <Label for={id} className="form-label required">
+                    Priority
+                </Label>
                 <InputSelectEnum
-                    onChange={e => setPriority(parseInt(e.target.value))}
+                    onChange={(e) => setPriority(parseInt(e.target.value))}
                     value={priority}
                     id={id}
                     enumMap={PriorityLabels}
@@ -81,11 +92,13 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: P
         const id = "jira-url";
         return (
             <FormGroup>
-                <Label for={id} className="form-label">Jira URL</Label>
+                <Label for={id} className="form-label">
+                    Jira URL
+                </Label>
                 <Input
                     type="url"
                     value={jiraUrl}
-                    onChange={e => setJiraUrl(e.target.value)}
+                    onChange={(e) => setJiraUrl(e.target.value)}
                     id={id}
                     placeholder="Optional..."
                 />
@@ -97,13 +110,15 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: P
         const id = "notes";
         return (
             <FormGroup>
-                <Label for={id} className="form-label">Notes</Label>
+                <Label for={id} className="form-label">
+                    Notes
+                </Label>
                 <Input
                     type="textarea"
                     value={notes}
                     id={id}
                     placeholder="Optional..."
-                    onChange={e => setNotes(e.target.value)}
+                    onChange={(e) => setNotes(e.target.value)}
                 />
             </FormGroup>
         );
@@ -112,9 +127,13 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: P
     function renderButtons() {
         return (
             <div className="bottom-buttons">
-                <Button type="submit" color="success">{existingPr ? "Save Changes" : "Create PR"}</Button>
-                <Button type="reset" color="secondary">Reset</Button>
+                <Button type="submit" color="success">
+                    {existingPr ? "Save Changes" : "Create PR"}
+                </Button>
+                <Button type="reset" color="secondary">
+                    Reset
+                </Button>
             </div>
         );
     }
-}
+};

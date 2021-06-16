@@ -6,13 +6,18 @@ export interface AlertItem {
 export const errorAlert = (text: string): AlertItem => {
     return {
         text,
-        color: "danger"
+        color: "danger",
     };
 };
 
-export const successAlert = (noun: string, pastTenseVerb: string): AlertItem => {
+export const successAlert = (
+    noun: string,
+    pastTenseVerb: string
+): AlertItem => {
     return {
-        text: `${noun.charAt(0).toUpperCase()}${noun.substr(1)} ${pastTenseVerb} successfully.`,
-        color: "success"
+        text: `${noun.charAt(0).toUpperCase()}${noun.substr(
+            1
+        )} ${pastTenseVerb} successfully.`,
+        color: "success",
     };
 };

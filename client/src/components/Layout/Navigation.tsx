@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
     ButtonDropdown,
     Collapse,
@@ -10,42 +10,51 @@ import {
     Navbar,
     NavbarBrand,
     NavbarToggler,
-    NavItem
+    NavItem,
 } from "reactstrap";
-import {NavLink, useHistory} from "react-router-dom";
-import {faCodeBranch, faHome, faUser} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon as FA} from "@fortawesome/react-fontawesome";
-import {useStoreActions, useStoreState} from "../../store";
-import {APP_NAME, CONTAINER_FLUID} from "../../utils/constants";
+import { NavLink, useHistory } from "react-router-dom";
+import {
+    faCodeBranch,
+    faHome,
+    faUser,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon as FA } from "@fortawesome/react-fontawesome";
+import { useStoreActions, useStoreState } from "../../store";
+import { APP_NAME, CONTAINER_FLUID } from "../../utils/constants";
 
 export const Navigation: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showAccountDrop, setShowAccountDrop] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const history = useHistory();
-    const currentUser = useStoreState(state => state.currentUser);
-    const logOut = useStoreActions(actions => actions.logOut);
+    const currentUser = useStoreState((state) => state.currentUser);
+    const logOut = useStoreActions((actions) => actions.logOut);
 
     return (
         <Navbar dark className="mb-4 main-navbar px-0" expand="lg">
             <Container fluid={CONTAINER_FLUID}>
-                <NavbarBrand className="hover-mouse" onClick={() => history.push("/")}>
+                <NavbarBrand
+                    className="hover-mouse"
+                    onClick={() => history.push("/")}
+                >
                     {APP_NAME}
                 </NavbarBrand>
-                <NavbarToggler onClick={toggle}/>
+                <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav navbar style={{marginRight: "auto"}}>
+                    <Nav navbar style={{ marginRight: "auto" }}>
                         <NavItem>
-                            <NavLink exact className="nav-link" to="/"><FA icon={faHome}/> Home</NavLink>
+                            <NavLink exact className="nav-link" to="/">
+                                <FA icon={faHome} /> Home
+                            </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className="nav-link" to="/pull-requests"><FA icon={faCodeBranch}/> Pull Requests</NavLink>
+                            <NavLink className="nav-link" to="/pull-requests">
+                                <FA icon={faCodeBranch} /> Pull Requests
+                            </NavLink>
                         </NavItem>
                     </Nav>
-                    <Nav navbar style={{marginLeft: "auto"}}>
-                        <NavItem>
-                            {renderAccount()}
-                        </NavItem>
+                    <Nav navbar style={{ marginLeft: "auto" }}>
+                        <NavItem>{renderAccount()}</NavItem>
                     </Nav>
                 </Collapse>
             </Container>
@@ -53,31 +62,40 @@ export const Navigation: React.FC = () => {
     );
 
     function renderUserIcon() {
-        return (
-            <FA className="me-1" icon={faUser}/>
-        );
+        return <FA className="me-1" icon={faUser} />;
     }
 
     function renderAccount() {
         if (!currentUser?.token) {
             return (
-                <NavLink className="nav-link" to="/account">{renderUserIcon()}Account</NavLink>
+                <NavLink className="nav-link" to="/account">
+                    {renderUserIcon()}Account
+                </NavLink>
             );
         } else {
             return (
-                <ButtonDropdown isOpen={showAccountDrop} toggle={() => setShowAccountDrop(o => !o)}>
-                    <DropdownToggle size="sm" color="secondary" style={{textTransform: "capitalize"}} caret>
-                        {renderUserIcon()}{" "}
-                        {currentUser.username}{" "}
+                <ButtonDropdown
+                    isOpen={showAccountDrop}
+                    toggle={() => setShowAccountDrop((o) => !o)}
+                >
+                    <DropdownToggle
+                        size="sm"
+                        color="secondary"
+                        style={{ textTransform: "capitalize" }}
+                        caret
+                    >
+                        {renderUserIcon()} {currentUser.username}{" "}
                     </DropdownToggle>
                     <DropdownMenu end>
                         <DropdownItem onClick={() => history.push("/account")}>
                             My Account
                         </DropdownItem>
-                        <DropdownItem onClick={async () => {
-                            await logOut(currentUser.token!);
-                            history.push("/");
-                        }}>
+                        <DropdownItem
+                            onClick={async () => {
+                                await logOut(currentUser.token!);
+                                history.push("/");
+                            }}
+                        >
                             Log Out
                         </DropdownItem>
                     </DropdownMenu>
@@ -85,4 +103,4 @@ export const Navigation: React.FC = () => {
             );
         }
     }
-}
+};

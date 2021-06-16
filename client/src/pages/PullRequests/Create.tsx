@@ -1,16 +1,17 @@
-import React, {useEffect} from "react";
-import {PageTitle} from "../../components/Layout/PageTitle";
-import {Col, Row} from "reactstrap";
-import {CreateEditPullRequest} from "../../components/PullRequest/CreateEditPullRequest";
-import {NewPrRequest} from "../../../../shared/src/resource_models/pullRequest";
-import {useStoreActions, useStoreState} from "../../store";
-import {useHistory} from "react-router-dom";
-import {scrollToTop} from "../../utils/utils";
+import React, { useEffect } from "react";
+import { PageTitle } from "../../components/Layout/PageTitle";
+import { Col, Row } from "reactstrap";
+import { CreateEditPullRequest } from "../../components/PullRequest/CreateEditPullRequest";
+import { NewPrRequest } from "../../../../shared/src/resource_models/pullRequest";
+import { useStoreActions, useStoreState } from "../../store";
+import { useHistory } from "react-router-dom";
+import { scrollToTop } from "../../utils/utils";
 
 export const Create: React.FC = () => {
-
-    const savePullRequest = useStoreActions(actions => actions.savePullRequest);
-    const currentUser = useStoreState(state => state.currentUser);
+    const savePullRequest = useStoreActions(
+        (actions) => actions.savePullRequest
+    );
+    const currentUser = useStoreState((state) => state.currentUser);
     const history = useHistory();
 
     useEffect(() => {
@@ -37,7 +38,10 @@ export const Create: React.FC = () => {
     async function submit(newPr: NewPrRequest) {
         if (currentUser?.token) {
             try {
-                await savePullRequest({pullRequest: newPr, token: currentUser.token});
+                await savePullRequest({
+                    pullRequest: newPr,
+                    token: currentUser.token,
+                });
                 history.push("/pull-requests");
             } catch (error) {
                 console.error(error);
@@ -45,4 +49,4 @@ export const Create: React.FC = () => {
             }
         }
     }
-}
+};

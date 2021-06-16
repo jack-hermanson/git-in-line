@@ -1,10 +1,9 @@
-import React, {useEffect} from "react";
-import {Card, Col, Row} from "reactstrap";
-import {PageTitle} from "../../components/Layout/PageTitle";
-import {APP_NAME} from "../../utils/constants";
+import React, { useEffect } from "react";
+import { Card, Col, Row } from "reactstrap";
+import { PageTitle } from "../../components/Layout/PageTitle";
+import { APP_NAME } from "../../utils/constants";
 
 export const Index: React.FC = () => {
-
     useEffect(() => {
         document.title = `${APP_NAME} | Dashboard`;
     });
@@ -29,5 +28,5 @@ export const Index: React.FC = () => {
                 </Col>
             </Row>
         </React.Fragment>
-    )
-}
+    );
+};

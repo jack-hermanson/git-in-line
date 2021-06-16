@@ -8,8 +8,8 @@ interface AuthHeader {
 export const getAuthHeader = (token: string): AuthHeader => {
     return {
         headers: {
-            Authentication: `Bearer ${token}`
-        }
+            Authentication: `Bearer ${token}`,
+        },
     };
 };
 
@@ -23,17 +23,23 @@ export interface KeyValPair {
 }
 
 export const formatDate = (date: Date): string => {
-    return new Date(date).toLocaleDateString([], {day: "numeric", month: "numeric"});
-}
+    return new Date(date).toLocaleDateString([], {
+        day: "numeric",
+        month: "numeric",
+    });
+};
 
 export const formatTime = (date: Date): string => {
-    return new Date(date).toLocaleTimeString([], {hour: "numeric", minute: "numeric"});
-}
+    return new Date(date).toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "numeric",
+    });
+};
 
 export const formatDateTime = (date: Date): string => {
     return `${formatDate(date)} ${formatTime(date)}`;
-}
+};
 
 export enum SocketEvent {
-    MODIFY_PULL_REQUESTS = "modify_pull_requests"
+    MODIFY_PULL_REQUESTS = "modify_pull_requests",
 }

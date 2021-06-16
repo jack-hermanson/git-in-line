@@ -4,84 +4,86 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 body {
-  background: #f4f4f4;
+    background: #f4f4f4;
 }
 
 a {
-  text-decoration: none;
-  color: $green;
-  &:hover {
-    text-decoration: underline;
-  }
+    text-decoration: none;
+    color: $green;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .hover-mouse:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 a.btn:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .bottom-buttons {
-  margin-bottom: 0;
-  margin-top: 1.6em;
-  button:not(last-of-type) {
-    margin-right: 0.5em;
-  }
+    margin-bottom: 0;
+    margin-top: 1.6em;
+    button:not(last-of-type) {
+        margin-right: 0.5em;
+    }
 }
 
 .form-label {
-  &.required {
-    &:after {
-      content: " *";
-      color: red;
+    &.required {
+        &:after {
+            content: " *";
+            color: red;
+        }
     }
-  }
 }
 
 .card-table {
-  tbody > tr {
-    th {
-      padding-left: 1em;
-    }
+    tbody > tr {
+        th {
+            padding-left: 1em;
+        }
 
-    td:last-of-type {
-      padding-right: 1em;
-    }
+        td:last-of-type {
+            padding-right: 1em;
+        }
 
-    &:last-of-type {
-      th, td {
-        border-bottom: 0;
-      }
-    }
+        &:last-of-type {
+            th,
+            td {
+                border-bottom: 0;
+            }
+        }
 
-    &:first-of-type {
-      th, td {
-        border-top: 0;
-      }
+        &:first-of-type {
+            th,
+            td {
+                border-top: 0;
+            }
+        }
     }
-  }
 }
 
 table.same-width {
-  tbody > tr {
-    th {
-      width: 30%;
+    tbody > tr {
+        th {
+            width: 30%;
+        }
     }
-  }
 }
 
 .no-mb-last {
-  &:last-of-type {
-    margin-bottom: 0 !important;
-  }
+    &:last-of-type {
+        margin-bottom: 0 !important;
+    }
 }
 
 .capitalize {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 .alert-success {
-  background-color: lighten($green, 60%);
+    background-color: lighten($green, 60%);
 }
