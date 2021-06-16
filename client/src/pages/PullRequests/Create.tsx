@@ -6,6 +6,7 @@ import { NewPrRequest } from "../../../../shared/src/resource_models/pullRequest
 import { useStoreActions, useStoreState } from "../../store";
 import { useHistory } from "react-router-dom";
 import { scrollToTop } from "../../utils/utils";
+import { Breadcrumbs } from "../../components/Utils/Breadcrumbs";
 
 export const Create: React.FC = () => {
     const savePullRequest = useStoreActions(
@@ -22,6 +23,19 @@ export const Create: React.FC = () => {
 
     return (
         <React.Fragment>
+            <Row>
+                <Col>
+                    <Breadcrumbs
+                        links={[
+                            { path: "/pull-requests", label: "Pull Requests" },
+                            {
+                                path: "/pull-requests/new",
+                                label: "Create Pull Request",
+                            },
+                        ]}
+                    />
+                </Col>
+            </Row>
             <Row>
                 <Col>
                     <PageTitle text="Create Pull Request" />

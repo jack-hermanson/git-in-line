@@ -53,7 +53,11 @@ export const Navigation: React.FC = () => {
                             </NavLink>
                         </NavItem>
                     </Nav>
-                    <Nav navbar style={{ marginLeft: "auto" }}>
+                    <Nav
+                        navbar
+                        style={{ marginLeft: "auto" }}
+                        className="mt-2 mt-lg-0"
+                    >
                         <NavItem>{renderAccount()}</NavItem>
                     </Nav>
                 </Collapse>

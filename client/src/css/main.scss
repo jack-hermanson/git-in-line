@@ -87,3 +87,15 @@ table.same-width {
 .alert-success {
     background-color: lighten($green, 60%);
 }
+
+ol.breadcrumb {
+    margin-bottom: 0.5rem;
+    background: $gray-200;
+    padding: 0 0.5rem;
+    border-radius: 4px;
+    li.breadcrumb-item {
+        a:hover {
+            color: $green;
+        }
+    }
+}

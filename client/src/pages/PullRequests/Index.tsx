@@ -22,6 +22,28 @@ export const Index: React.FC = () => {
 
     return (
         <React.Fragment>
+            {renderTitleRow()}
+            <Row>
+                <Col lg={3}>
+                    <FilterPullRequests
+                        setFilteredPullRequests={setFilteredPullRequests}
+                    />
+                </Col>
+                <Col lg={9}>
+                    {pullRequests ? (
+                        filteredPullRequests.map((pr) => (
+                            <PullRequest pullRequest={pr} key={pr.id} />
+                        ))
+                    ) : (
+                        <LoadingSpinner />
+                    )}
+                </Col>
+            </Row>
+        </React.Fragment>
+    );
+
+    function renderTitleRow() {
+        return (
             <Row>
                 <Col>
                     <PageTitle text="Pull Requests">
@@ -34,20 +56,6 @@ export const Index: React.FC = () => {
                     </PageTitle>
                 </Col>
             </Row>
-            <Row>
-                <Col lg={3}>
-                    <FilterPullRequests />
-                </Col>
-                <Col lg={9}>
-                    {filteredPullRequests ? (
-                        filteredPullRequests.map((pr) => (
-                            <PullRequest pullRequest={pr} key={pr.id} />
-                        ))
-                    ) : (
-                        <LoadingSpinner />
-                    )}
-                </Col>
-            </Row>
-        </React.Fragment>
-    );
+        );
+    }
 };

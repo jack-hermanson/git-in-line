@@ -8,6 +8,7 @@ import { LoadingSpinner } from "../../components/Utils/LoadingSpinner";
 import { CreateEditPullRequest } from "../../components/PullRequest/CreateEditPullRequest";
 import { NewPrRequest } from "../../../../shared/src/resource_models/pullRequest";
 import { scrollToTop } from "../../utils/utils";
+import { Breadcrumbs } from "../../components/Utils/Breadcrumbs";
 
 export const Edit: React.FC<RouteComponentProps<{ id: string }>> = ({
     match,
@@ -30,6 +31,7 @@ export const Edit: React.FC<RouteComponentProps<{ id: string }>> = ({
 
     return (
         <React.Fragment>
+            {renderBreadcrumbs()}
             <Row>
                 <Col>
                     <PageTitle text="Edit Pull Request" />
@@ -61,6 +63,29 @@ export const Edit: React.FC<RouteComponentProps<{ id: string }>> = ({
             } catch (error) {
                 scrollToTop();
             }
+        }
+    }
+
+    function renderBreadcrumbs() {
+        if (pullRequest) {
+            return (
+                <Row>
+                    <Col>
+                        <Breadcrumbs
+                            links={[
+                                {
+                                    path: "/pull-requests",
+                                    label: "Pull Requests",
+                                },
+                                {
+                                    path: `/pull-requests/edit/${pullRequest.id}`,
+                                    label: "Edit",
+                                },
+                            ]}
+                        />
+                    </Col>
+                </Row>
+            );
         }
     }
 };
