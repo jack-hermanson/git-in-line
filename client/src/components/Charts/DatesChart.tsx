@@ -37,11 +37,7 @@ export const DatesChart: React.FC = () => {
                                     dates[0]
                             ).length,
                         ],
-                        backgroundColor: [
-                            "rgba(200, 195, 114, 0.2)",
-                            "rgba(255, 99, 132, 0.2)",
-                            "rgba(30, 77, 43, 0.2)",
-                        ],
+                        backgroundColor: ["rgba(30, 77, 43, 0.2)"],
                         borderWidth: 0,
                     },
                 ],

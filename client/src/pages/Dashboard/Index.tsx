@@ -24,10 +24,14 @@ export const Index: React.FC = () => {
             </Row>
             <Row>
                 <Col lg={4} className="mb-3 mb-lg-0">
+                    <h4>PR Status</h4>
                     <StatusChart />
                 </Col>
                 <Col lg={4} className="mb-3 mb-lg-0">
-                    <DatesChart />
+                    <h4>PRs per Day</h4>
+                    <div style={{ height: "430px" }}>
+                        <DatesChart />
+                    </div>
                 </Col>
                 <Col lg={4}>
                     <h4>Most Recent</h4>
