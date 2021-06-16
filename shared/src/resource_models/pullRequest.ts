@@ -1,4 +1,4 @@
-import {ResourceModel} from "./resourceModel";
+import {ResourceModel} from "./_resourceModel";
 
 export interface PullRequestRequest {
     gitHubUrl: string;

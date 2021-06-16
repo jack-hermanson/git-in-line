@@ -1,6 +1,7 @@
 import express, {Response} from "express";
 import {AuthRequest, HTTP} from "../utils/types";
-import {LoginRequest, NewAccountRequest, newAccountSchema} from "../models/Account";
+import {newAccountSchema} from "../models/Account";
+import {LoginRequest, NewAccountRequest} from "../../../shared/src/resource_models/account";
 import {sendError} from "../utils/utils";
 import {validateRequest} from "../utils/validation";
 import AccountService from "../services/AccountService";

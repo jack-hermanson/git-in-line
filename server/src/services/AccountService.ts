@@ -1,4 +1,5 @@
-import {Account, LoginRequest, NewAccountRequest} from "../models/Account";
+import {Account} from "../models/Account";
+import {LoginRequest, NewAccountRequest} from "../../../shared/src/resource_models/account";
 import {HTTP} from "../utils/types";
 import {getConnection, Repository} from "typeorm";
 import {doesNotConflict} from "../utils/validation";
