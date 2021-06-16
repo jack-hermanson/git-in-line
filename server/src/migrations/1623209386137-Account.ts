@@ -1,8 +1,7 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
-import {idColumn} from "../utils/utils";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { idColumn } from "../utils/utils";
 
 export class Account1623209386137 implements MigrationInterface {
-
     account = new Table({
         name: "account",
         columns: [
@@ -11,19 +10,19 @@ export class Account1623209386137 implements MigrationInterface {
                 name: "username",
                 type: "varchar",
                 isNullable: false,
-                isUnique: true
+                isUnique: true,
             },
             {
                 name: "password",
                 type: "varchar",
-                isNullable: false
+                isNullable: false,
             },
             {
                 name: "token",
                 type: "varchar",
-                isNullable: true
-            }
-        ]
+                isNullable: true,
+            },
+        ],
     });
 
     public async up(queryRunner: QueryRunner): Promise<void> {
@@ -33,5 +32,4 @@ export class Account1623209386137 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable(this.account);
     }
-
 }

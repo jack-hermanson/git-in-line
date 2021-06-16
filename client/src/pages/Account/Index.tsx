@@ -1,13 +1,12 @@
-import React, {useEffect} from "react";
-import {Col, Row} from "reactstrap";
-import {PageTitle} from "../../components/Layout/PageTitle";
-import {APP_NAME} from "../../constants";
-import {useStoreState} from "../../store";
-import {useHistory} from "react-router-dom";
+import React, { useEffect } from "react";
+import { Col, Row } from "reactstrap";
+import { PageTitle } from "../../components/Layout/PageTitle";
+import { APP_NAME } from "../../utils/constants";
+import { useStoreState } from "../../store";
+import { useHistory } from "react-router-dom";
 
 export const Index: React.FC = () => {
-
-    const currentUser = useStoreState(state => state.currentUser);
+    const currentUser = useStoreState((state) => state.currentUser);
     const history = useHistory();
 
     useEffect(() => {
@@ -30,4 +29,4 @@ export const Index: React.FC = () => {
             )}
         </React.Fragment>
     );
-}
+};

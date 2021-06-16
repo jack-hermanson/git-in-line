@@ -1,11 +1,11 @@
 import React from "react";
-import {Badge} from "reactstrap";
+import { Badge } from "reactstrap";
 
 interface Props {
     priority: number;
 }
 
-export const PriorityLabel: React.FC<Props> = ({priority}: Props) => {
+export const PriorityLabel: React.FC<Props> = ({ priority }: Props) => {
     let color;
     let text;
 
@@ -24,7 +24,5 @@ export const PriorityLabel: React.FC<Props> = ({priority}: Props) => {
             break;
     }
 
-    return (
-        <Badge color={color}>{text}</Badge>
-    );
-}
+    return <Badge color={color}>{text}</Badge>;
+};

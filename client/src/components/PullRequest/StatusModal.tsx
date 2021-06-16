@@ -1,6 +1,15 @@
-import React, {useState} from "react";
-import {Button, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import {PullRequestRecord} from "../../models/pullRequest";
+import React, { useState } from "react";
+import {
+    Button,
+    Label,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+} from "reactstrap";
+import { PullRequestRecord } from "../../../../shared/src/resource_models/pullRequest";
+import { PrStatusLabels } from "../../../../shared/src/enums";
+import { InputSelectEnum } from "../Utils/InputSelectEnum";
 
 interface Props {
     pullRequest: PullRequestRecord;
@@ -9,32 +18,48 @@ interface Props {
     save: (status: number) => any;
 }
 
-export const StatusModal: React.FC<Props> = ({pullRequest, isOpen, toggle, save}: Props) => {
-
+export const StatusModal: React.FC<Props> = ({
+    pullRequest,
+    isOpen,
+    toggle,
+    save,
+}: Props) => {
     const [status, setStatus] = useState(pullRequest.status);
+    const id = "status-modal";
 
     return (
         <Modal isOpen={isOpen} toggle={toggle}>
-            <ModalHeader toggle={toggle}>
-                Pull Request Status
-            </ModalHeader>
-            <form onSubmit={(e) => {
-                e.preventDefault();
-                save(status);
-            }}>
+            <ModalHeader toggle={toggle}>Pull Request Status</ModalHeader>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    save(status);
+                }}
+            >
                 <ModalBody>
-                    <Label className="form-label">Status</Label>
-                    <Input type="select" value={status} onChange={e => setStatus(parseInt(e.target.value))}>
-                        <option value={1}>Pending</option>
-                        <option value={2}>Changes Requested</option>
-                        <option value={3}>Approved</option>
-                    </Input>
+                    <Label for={id} className="form-label">
+                        Status
+                    </Label>
+                    <InputSelectEnum
+                        onChange={(e) => setStatus(parseInt(e.target.value))}
+                        value={status}
+                        id={id}
+                        enumMap={PrStatusLabels}
+                    />
                 </ModalBody>
                 <ModalFooter>
-                    <Button size="sm" color="secondary" onClick={() => toggle()}>Cancel</Button>
-                    <Button size="sm" color="success" type="submit">Save</Button>
+                    <Button
+                        size="sm"
+                        color="secondary"
+                        onClick={() => toggle()}
+                    >
+                        Cancel
+                    </Button>
+                    <Button size="sm" color="success" type="submit">
+                        Save
+                    </Button>
                 </ModalFooter>
             </form>
         </Modal>
     );
-}
+};

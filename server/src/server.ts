@@ -3,23 +3,23 @@ import bodyParser from "body-parser";
 import * as http from "http";
 import * as socketio from "socket.io";
 import path from "path";
-import {config} from "dotenv";
-import {routes} from "./routes/_routes";
-import {DbDialect} from "./utils/types";
-import {ConnectionOptions, createConnection} from "typeorm";
-import {migrations} from "./migrations/_migrations";
-import {Account} from "./models/Account";
-import {PullRequest} from "./models/PullRequest";
+import { config } from "dotenv";
+import { routes } from "./routes/_routes";
+import { DbDialect } from "./utils/types";
+import { ConnectionOptions, createConnection } from "typeorm";
+import { migrations } from "./migrations/_migrations";
+import { Account } from "./models/Account";
+import { PullRequest } from "./models/PullRequest";
 
 // env
 const envPath = path.join(__dirname, "..", ".env");
-config({path: envPath});
+config({ path: envPath });
 
 // express server
 const app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.set("port", (process.env.PORT || 5000));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.set("port", process.env.PORT || 5000);
 
 // static
 const staticFiles = express.static(path.join(__dirname, "../../client/build"));
@@ -38,30 +38,30 @@ export const dbOptions: ConnectionOptions = {
     database: databaseDialect === "sqlite" ? "site.db" : "",
     type: databaseDialect,
     url: process.env.DATABASE_URL,
-    entities: [
-        Account, PullRequest
-    ],
+    entities: [Account, PullRequest],
     synchronize: false,
     extra: {
         ssl: {
-            rejectUnauthorized: false
-        }
+            rejectUnauthorized: false,
+        },
     },
     migrationsRun: true,
     migrationsTableName: "migrations",
     migrations: migrations,
-    cli: {migrationsDir:  path.join(__dirname, "migrations")}
+    cli: { migrationsDir: path.join(__dirname, "migrations") },
 };
-createConnection(dbOptions).then(connection => {
-    console.log(`Connected to database type: ${connection.options.type}.`);
-}).catch(error => console.error(error));
+createConnection(dbOptions)
+    .then((connection) => {
+        console.log(`Connected to database type: ${connection.options.type}.`);
+    })
+    .catch((error) => console.error(error));
 
 // http server and socket
 const server: http.Server = http.createServer(app);
 const io = new socketio.Server({
     cors: {
-        origin: "*"
-    }
+        origin: "*",
+    },
 });
 io.attach(server);
 app.set("socketio", io);

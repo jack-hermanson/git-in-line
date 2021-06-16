@@ -5,135 +5,135 @@ export const FOOTER_THIRD_COLUMN: "support" | "chhs" | undefined = "chhs";
 export const COLLEGES = [
     {
         name: "Agricultural Sciences",
-        url: "https://agsci.colostate.edu/"
+        url: "https://agsci.colostate.edu/",
     },
     {
         name: "Business",
-        url: "https://biz.colostate.edu/"
+        url: "https://biz.colostate.edu/",
     },
     {
         name: "Walter Scott, Jr. College of Engineering",
-        url: "https://www.engr.colostate.edu/"
+        url: "https://www.engr.colostate.edu/",
     },
     {
         name: "Health and Human Sciences",
-        url: "https://www.chhs.colostate.edu/"
+        url: "https://www.chhs.colostate.edu/",
     },
     {
         name: "Liberal Arts",
-        url: "https://www.libarts.colostate.edu/"
+        url: "https://www.libarts.colostate.edu/",
     },
     {
         name: "Warner College of Natural Resources",
-        url: "https://warnercnr.colostate.edu/"
+        url: "https://warnercnr.colostate.edu/",
     },
     {
         name: "Natural Sciences",
-        url: "https://www.natsci.colostate.edu/"
+        url: "https://www.natsci.colostate.edu/",
     },
     {
         name: "Veterinary Medicine and Biomedical Sciences",
-        url: "https://vetmedbiosci.colostate.edu/"
-    }
+        url: "https://vetmedbiosci.colostate.edu/",
+    },
 ];
 
 export const SCHOOLS_AND_PROGRAMS = [
     {
         name: "Graduate School",
-        url: "https://graduateschool.colostate.edu/"
+        url: "https://graduateschool.colostate.edu/",
     },
     {
         name: "International Programs",
-        url: "https://international.colostate.edu/"
+        url: "https://international.colostate.edu/",
     },
     {
         name: "Online Degrees and Courses",
-        url: "https://www.online.colostate.edu/"
+        url: "https://www.online.colostate.edu/",
     },
     {
         name: "School of Music, Theatre and Dance",
-        url: "https://uca.colostate.edu/"
+        url: "https://uca.colostate.edu/",
     },
     {
         name: "School of Biomedical Engineering",
-        url: "https://www.engr.colostate.edu/sbme/"
+        url: "https://www.engr.colostate.edu/sbme/",
     },
     {
         name: "School of Education",
-        url: "https://www.chhs.colostate.edu/soe/"
+        url: "https://www.chhs.colostate.edu/soe/",
     },
     {
         name: "School of Global Environmental Sustainability",
-        url: "https://sustainability.colostate.edu/"
+        url: "https://sustainability.colostate.edu/",
     },
     {
         name: "School of Social Work",
-        url: "http://www.ssw.chhs.colostate.edu/"
+        url: "http://www.ssw.chhs.colostate.edu/",
     },
     {
         name: "School of Public Health",
-        url: "https://publichealth.colostate.edu/"
-    }
+        url: "https://publichealth.colostate.edu/",
+    },
 ];
 
 export const GENERIC_FOOTER_LINKS = [
     {
         name: "Apply to CSU",
-        url: "https://admissions.colostate.edu/"
+        url: "https://admissions.colostate.edu/",
     },
     {
         name: "Contact CSU",
-        url: "https://www.colostate.edu/contact"
+        url: "https://www.colostate.edu/contact",
     },
     {
         name: "Disclaimer",
-        url: "https://www.colostate.edu/disclaimer"
+        url: "https://www.colostate.edu/disclaimer",
     },
     {
         name: "Equal Opportunity",
-        url: "https://www.colostate.edu/equal-opportunity"
+        url: "https://www.colostate.edu/equal-opportunity",
     },
     {
         name: "Privacy Statement",
-        url: "https://www.colostate.edu/privacy"
+        url: "https://www.colostate.edu/privacy",
     },
     {
         name: "Accessibility Statement",
-        url: "https://www.colostate.edu/accessibility/"
-    }
+        url: "https://www.colostate.edu/accessibility/",
+    },
 ];
 
 export const CHHS_LINKS = [
     {
         name: "CHHS Home",
-        url: "https://www.chhs.colostate.edu"
+        url: "https://www.chhs.colostate.edu",
     },
     {
         name: "IT Helpdesk",
-        url: "https://www.chhs.colostate.edu/technology/helpdesk/"
+        url: "https://www.chhs.colostate.edu/technology/helpdesk/",
     },
     {
         name: "Application Development",
-        url: "https://www.chhs.colostate.edu/technology/custom-application-development/"
+        url: "https://www.chhs.colostate.edu/technology/custom-application-development/",
     },
     {
         name: "Computer Labs",
-        url: "https://www.chhs.colostate.edu/technology/student-computer-labs/"
+        url: "https://www.chhs.colostate.edu/technology/student-computer-labs/",
     },
     {
         name: "Citrix",
-        url: "https://citrix.chhs.colostate.edu/"
+        url: "https://citrix.chhs.colostate.edu/",
     },
     {
         name: "Directory",
-        url: "https://www.chhs.colostate.edu/directory/"
+        url: "https://www.chhs.colostate.edu/directory/",
     },
     {
         name: "Current Students",
-        url: "https://www.chhs.colostate.edu/current-students/"
+        url: "https://www.chhs.colostate.edu/current-students/",
     },
     {
         name: "Faculty and Staff",
-        url: "https://www.chhs.colostate.edu/faculty-and-staff/"
-    }
-]
+        url: "https://www.chhs.colostate.edu/faculty-and-staff/",
+    },
+];

@@ -1,13 +1,12 @@
-import React, {useState} from "react";
-import {Button, FormGroup, Input, Label} from "reactstrap";
-import {LoginRequest} from "../../models/account";
+import React, { useState } from "react";
+import { Button, FormGroup, Input, Label } from "reactstrap";
+import { LoginRequest } from "../../../../shared/src/resource_models/account";
 
 interface Props {
     onSubmit: (loginRequest: LoginRequest) => any;
 }
 
-export const LoginForm: React.FC<Props> = ({onSubmit}: Props) => {
-
+export const LoginForm: React.FC<Props> = ({ onSubmit }: Props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -21,7 +20,7 @@ export const LoginForm: React.FC<Props> = ({onSubmit}: Props) => {
 
     function submit(event: React.FormEvent) {
         event.preventDefault();
-        onSubmit({username, password});
+        onSubmit({ username, password });
     }
 
     function reset(event: React.FormEvent) {
@@ -35,13 +34,15 @@ export const LoginForm: React.FC<Props> = ({onSubmit}: Props) => {
         const id = "username-input";
         return (
             <FormGroup>
-                <Label className="form-label" for={id}>Username</Label>
+                <Label className="form-label" for={id}>
+                    Username
+                </Label>
                 <Input
                     autoFocus
                     required
                     type="text"
                     id={id}
-                    onChange={e => setUsername(e.target.value)}
+                    onChange={(e) => setUsername(e.target.value)}
                     value={username}
                 />
             </FormGroup>
@@ -52,12 +53,14 @@ export const LoginForm: React.FC<Props> = ({onSubmit}: Props) => {
         const id = "password-input";
         return (
             <FormGroup>
-                <Label className="form-label" for={id}>Password</Label>
+                <Label className="form-label" for={id}>
+                    Password
+                </Label>
                 <Input
                     required
                     type="password"
                     id={id}
-                    onChange={e => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     value={password}
                 />
             </FormGroup>
@@ -67,13 +70,17 @@ export const LoginForm: React.FC<Props> = ({onSubmit}: Props) => {
     function renderButtons() {
         return (
             <div className="bottom-buttons">
-                <Button type="submit" color="success">Log In</Button>
-                <Button type="reset" color="secondary">Reset</Button>
+                <Button type="submit" color="success">
+                    Log In
+                </Button>
+                <Button type="reset" color="secondary">
+                    Reset
+                </Button>
             </div>
-        )
+        );
     }
 
     function focusOnUsername() {
         document.getElementById("username-input")?.focus();
     }
-}
+};

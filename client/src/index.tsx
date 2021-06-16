@@ -1,15 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import {store} from "./store";
-import {StoreProvider} from "easy-peasy";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { store } from "./store";
+import { StoreProvider } from "easy-peasy";
 
 ReactDOM.render(
     <React.Fragment>
         <StoreProvider store={store}>
-            <App/>
+            <App />
         </StoreProvider>
     </React.Fragment>,
-    document.getElementById('root')
+    document.getElementById("root")
 );
-

@@ -1,9 +1,23 @@
-import {createStore, createTypedHooks, action, Action, thunk, Thunk} from "easy-peasy";
-import {AccountRecord, LoginRequest} from "./models/account";
+import {
+    createStore,
+    createTypedHooks,
+    action,
+    Action,
+    thunk,
+    Thunk,
+} from "easy-peasy";
+import {
+    AccountRecord,
+    LoginRequest,
+} from "../../shared/src/resource_models/account";
 import AccountClient from "./clients/AccountClient";
 import PullRequestClient from "./clients/PullRequestClient";
-import {EditPullRequestRequest, PullRequestRecord, PullRequestRequest} from "./models/pullRequest";
-import {AlertItem, errorAlert, successAlert} from "./models/alert";
+import {
+    EditPrRequest,
+    PullRequestRecord,
+    NewPrRequest,
+} from "../../shared/src/resource_models/pullRequest";
+import { AlertItem, errorAlert, successAlert } from "./utils/alert";
 
 interface StoreModel {
     currentUser: AccountRecord | undefined;
@@ -17,9 +31,15 @@ interface StoreModel {
 
     pullRequests: PullRequestRecord[] | undefined;
     setPullRequests: Action<StoreModel, PullRequestRecord[]>;
-    savePullRequest: Thunk<StoreModel, { pullRequest: PullRequestRequest; token: string; }>;
+    savePullRequest: Thunk<
+        StoreModel,
+        { pullRequest: NewPrRequest; token: string }
+    >;
     loadPullRequests: Thunk<StoreModel>;
-    editPullRequest: Thunk<StoreModel, { pullRequest: EditPullRequestRequest; token: string; }>;
+    editPullRequest: Thunk<
+        StoreModel,
+        { pullRequest: EditPrRequest; token: string }
+    >;
 
     alerts: AlertItem[];
     setAlerts: Action<StoreModel, AlertItem[]>;
@@ -65,7 +85,7 @@ export const store = createStore<StoreModel>({
     setPullRequests: action((state, payload) => {
         state.pullRequests = payload;
     }),
-    savePullRequest: thunk(async (actions, {pullRequest, token}) => {
+    savePullRequest: thunk(async (actions, { pullRequest, token }) => {
         try {
             await PullRequestClient.create(pullRequest, token);
             actions.addAlert(successAlert("pull request", "created"));
@@ -96,11 +116,10 @@ export const store = createStore<StoreModel>({
     }),
     addAlert: action((state, payload) => {
         state.alerts = [payload, ...state.alerts];
-    })
+    }),
 });
 
 const typedHooks = createTypedHooks<StoreModel>();
 
 export const useStoreActions = typedHooks.useStoreActions;
 export const useStoreState = typedHooks.useStoreState;
-

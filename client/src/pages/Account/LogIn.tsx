@@ -1,16 +1,15 @@
-import React, {useEffect} from "react";
-import {PageTitle} from "../../components/Layout/PageTitle";
-import {Col, Row} from "reactstrap";
-import {APP_NAME} from "../../constants";
-import {LoginForm} from "../../components/Account/LoginForm";
-import {useStoreActions} from "../../store";
-import {useHistory} from "react-router-dom";
-import {LoginRequest} from "../../models/account";
-import {scrollToTop} from "../../utils";
+import React, { useEffect } from "react";
+import { PageTitle } from "../../components/Layout/PageTitle";
+import { Col, Row } from "reactstrap";
+import { APP_NAME } from "../../utils/constants";
+import { LoginForm } from "../../components/Account/LoginForm";
+import { useStoreActions } from "../../store";
+import { useHistory } from "react-router-dom";
+import { LoginRequest } from "../../../../shared/src/resource_models/account";
+import { scrollToTop } from "../../utils/utils";
 
 export const LogIn: React.FC = () => {
-
-    const logIn = useStoreActions(actions => actions.logIn);
+    const logIn = useStoreActions((actions) => actions.logIn);
     const history = useHistory();
 
     useEffect(() => {
@@ -40,4 +39,4 @@ export const LogIn: React.FC = () => {
             scrollToTop();
         }
     }
-}
+};
