@@ -43,3 +43,19 @@ export const formatDateTime = (date: Date): string => {
 export enum SocketEvent {
     MODIFY_PULL_REQUESTS = "modify_pull_requests",
 }
+
+export interface ValueLabelPair<T> {
+    value: T;
+    label: string;
+}
+
+export const enumToValueLabelPairs = <T>(
+    enumMap: Map<T, string>
+): ValueLabelPair<T>[] => {
+    return Array.from(enumMap).map((p) => {
+        return {
+            value: p[0],
+            label: p[1],
+        };
+    });
+};

@@ -4,7 +4,8 @@ import { Button } from "reactstrap";
 import { PullRequestRecord } from "../../../../shared/src/resource_models/pullRequest";
 import { useStoreState } from "../../store";
 import { FilterCheckboxes } from "../Utils/FilterCheckboxes";
-import { PriorityLabels } from "../../../../shared/src/enums";
+import { PriorityLabels, PrStatusLabels } from "../../../../shared/src/enums";
+import { enumToValueLabelPairs, ValueLabelPair } from "../../utils/utils";
 
 interface Props {
     setFilteredPullRequests: (pullRequests: PullRequestRecord[]) => any;
@@ -32,12 +33,7 @@ export const FilterPullRequests: React.FC = () => {
     );
 
     function renderPriority() {
-        const priorityOptions = Array.from(PriorityLabels).map((p) => {
-            return {
-                value: p[0],
-                label: p[1],
-            };
-        });
+        const priorityOptions = enumToValueLabelPairs(PriorityLabels);
 
         return (
             <FilterCheckboxes
@@ -50,11 +46,7 @@ export const FilterPullRequests: React.FC = () => {
     }
 
     function renderStatus() {
-        const statusOptions = [
-            { value: 1, label: "Pending" },
-            { value: 2, label: "Changes Requested" },
-            { value: 3, label: "Approved" },
-        ];
+        const statusOptions = enumToValueLabelPairs(PrStatusLabels);
 
         return (
             <FilterCheckboxes
@@ -68,9 +60,11 @@ export const FilterPullRequests: React.FC = () => {
 
     function renderAccounts() {
         if (accounts) {
-            const accountOptions = accounts.map((account) => {
-                return { value: account.id, label: account.username };
-            });
+            const accountOptions: ValueLabelPair<number>[] = accounts.map(
+                (account) => {
+                    return { value: account.id, label: account.username };
+                }
+            );
 
             return (
                 <FilterCheckboxes

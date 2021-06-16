@@ -1,9 +1,10 @@
 import React from "react";
 import { FormGroup, Input, Label } from "reactstrap";
+import { ValueLabelPair } from "../../utils/utils";
 
 interface Props {
     label: string;
-    options: { value: number; label: string }[];
+    options: ValueLabelPair<number>[];
     selectedItems: number[];
     setSelectedItems: React.Dispatch<React.SetStateAction<number[]>>;
     capitalizeLabels?: boolean;
