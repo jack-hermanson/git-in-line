@@ -1,7 +1,7 @@
 import React from "react";
 import { useStoreState } from "../../store";
 import { LoadingSpinner } from "../Utils/LoadingSpinner";
-import { Bar, Pie } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { PrStatus } from "../../../../shared/src/enums";
 
 export const StatusChart: React.FC = () => {

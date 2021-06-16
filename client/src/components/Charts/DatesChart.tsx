@@ -1,9 +1,7 @@
 import React from "react";
 import { useStoreState } from "../../store";
 import { LoadingSpinner } from "../Utils/LoadingSpinner";
-import { PrStatus } from "../../../../shared/src/enums";
 import { Bar } from "react-chartjs-2";
-import { removeTime } from "../../utils/utils";
 
 export const DatesChart: React.FC = () => {
     const pullRequests = useStoreState((state) => state.pullRequests);
