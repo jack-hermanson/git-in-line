@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Button, FormGroup, Input, Label} from "reactstrap";
 import {NewPrRequest, PullRequestRecord} from "../../../../shared/src/resource_models/pullRequest";
-import {Priority, PriorityEnumLabel, PrStatusEnumLabel} from "../../../../shared/src/enums";
+import {Priority, PriorityLabels} from "../../../../shared/src/enums";
+import {InputSelectEnum} from "../Utils/InputSelectEnum";
 
 interface Props {
     onSubmit: (newPr: NewPrRequest) => any;
@@ -9,9 +10,6 @@ interface Props {
 }
 
 export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: Props) => {
-
-    console.log("hello");
-    console.log(Array.from(PrStatusEnumLabel));
 
     const [gitHubUrl, setGitHubUrl] = useState(existingPr?.gitHubUrl || "");
     const [priority, setPriority] = useState(existingPr?.priority || Priority.MED);
@@ -69,11 +67,12 @@ export const CreateEditPullRequest: React.FC<Props> = ({onSubmit, existingPr}: P
         return (
             <FormGroup>
                 <Label for={id} className="form-label required">Priority</Label>
-                <Input type="select" value={priority} onChange={e => setPriority(parseInt(e.target.value))}>
-                    {Array.from(PrStatusEnumLabel).map(prStatus => (
-                        <option key={prStatus[0]} value={prStatus[0]}>{prStatus[1]}</option>
-                    ))}
-                </Input>
+                <InputSelectEnum
+                    onChange={e => setPriority(parseInt(e.target.value))}
+                    value={priority}
+                    id={id}
+                    enumMap={PriorityLabels}
+                />
             </FormGroup>
         );
     }
