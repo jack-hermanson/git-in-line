@@ -11169,4 +11169,14 @@ table.same-width tbody > tr th {
   background-color: #b9e4c5;
 }
 
+ol.breadcrumb {
+  margin-bottom: 0.5rem;
+  background: #e9ecef;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}
+ol.breadcrumb li.breadcrumb-item a:hover {
+  color: #1e4d2b;
+}
+
 /*# sourceMappingURL=main.css.map */
