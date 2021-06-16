@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {MobileToggleCard} from "../Utils/MobileToggleCard";
 import {Button, FormGroup, Input, Label} from "reactstrap";
-import {PullRequestRecord} from "../../models/pullRequest";
+import {PullRequestRecord} from "../../../../shared/src/resource_models/pullRequest";
 import {useStoreState} from "../../store";
 import {FilterCheckboxes} from "../Utils/FilterCheckboxes";
 

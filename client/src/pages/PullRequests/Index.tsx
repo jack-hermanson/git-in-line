@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {PageTitle} from "../../components/Layout/PageTitle";
 import {Col, Row} from "reactstrap";
-import {APP_NAME} from "../../constants";
+import {APP_NAME} from "../../utils/constants";
 import {Link} from "react-router-dom";
 import {LoadingSpinner} from "../../components/Utils/LoadingSpinner";
 import {useStoreState} from "../../store";
 import {PullRequest} from "../../components/PullRequest/PullRequest";
 import {FilterPullRequests} from "../../components/PullRequest/FilterPullRequests";
-import {PullRequestRecord} from "../../models/pullRequest";
+import {PullRequestRecord} from "../../../../shared/src/resource_models/pullRequest";
 
 export const Index: React.FC = () => {
 

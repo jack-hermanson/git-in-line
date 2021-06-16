@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, FormGroup, Input, Label} from "reactstrap";
-import {PullRequestRecord, PullRequestRequest} from "../../models/pullRequest";
+import {PullRequestRecord, PullRequestRequest} from "../../../../shared/src/resource_models/pullRequest";
 
 interface Props {
     onSubmit: (newPr: PullRequestRequest) => any;

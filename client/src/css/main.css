@@ -11163,4 +11163,8 @@ table.same-width tbody > tr th {
   text-transform: capitalize;
 }
 
+.alert-success {
+  background-color: #b9e4c5;
+}
+
 /*# sourceMappingURL=main.css.map */

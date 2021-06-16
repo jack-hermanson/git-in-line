@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import {PullRequestRecord} from "../../models/pullRequest";
+import {PullRequestRecord} from "../../../../shared/src/resource_models/pullRequest";
 
 interface Props {
     pullRequest: PullRequestRecord;

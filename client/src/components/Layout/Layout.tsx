@@ -2,7 +2,7 @@ import React from "react";
 import {Navigation} from "./Navigation";
 import {Header} from "./Header";
 import {Container} from "reactstrap";
-import {CONTAINER_FLUID} from "../../constants";
+import {CONTAINER_FLUID} from "../../utils/constants";
 import {Footer} from "./Footer";
 
 interface Props {

@@ -1,0 +1,5 @@
+{
+  "name": "shared",
+  "description": "Shared items between front/back ends",
+  "license": "MIT"
+}

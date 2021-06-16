@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Card, CardBody, CardFooter, CardHeader} from "reactstrap";
-import {PullRequestRecord} from "../../models/pullRequest";
+import {PullRequestRecord} from "../../../../shared/src/resource_models/pullRequest";
 import {KeyValTable} from "../Utils/KeyValTable";
 import {PriorityLabel} from "./PriorityLabel";
-import {formatDateTime, KeyValPair, scrollToTop} from "../../utils";
+import {formatDateTime, KeyValPair, scrollToTop} from "../../utils/utils";
 import {StatusLabel} from "./StatusLabel";
 import {useStoreActions, useStoreState} from "../../store";
 import {StatusModal} from "./StatusModal";

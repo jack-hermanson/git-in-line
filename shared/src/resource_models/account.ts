@@ -1,6 +1,6 @@
-import {BaseModel} from "./_baseModel";
+import {ResourceModel} from "./resourceModel";
 
-export interface AccountRecord extends BaseModel {
+export interface AccountRecord extends ResourceModel {
     username: string;
     token?: string;
 }

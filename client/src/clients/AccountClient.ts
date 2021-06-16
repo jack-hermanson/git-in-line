@@ -1,6 +1,6 @@
-import {AccountRecord, LoginRequest} from "../models/account";
+import {AccountRecord, LoginRequest} from "../../../shared/src/resource_models/account";
 import axios from "axios";
-import {getAuthHeader} from "../utils";
+import {getAuthHeader} from "../utils/utils";
 
 export default abstract class AccountClient {
     static baseUrl = "/api/accounts";

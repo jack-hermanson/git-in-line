@@ -7,7 +7,7 @@ import {
     FOOTER_THIRD_COLUMN,
     GENERIC_FOOTER_LINKS,
     SCHOOLS_AND_PROGRAMS
-} from "../../constants";
+} from "../../utils/constants";
 import csuSignatureSansSerif from "../../images/csu-signature-sans-serif.svg";
 import supportCsu from "../../images/support-csu-nb.svg";
 

@@ -1,4 +1,4 @@
-import {BaseModel} from "./_baseModel";
+import {ResourceModel} from "./resourceModel";
 
 export interface PullRequestRequest {
     gitHubUrl: string;
@@ -7,11 +7,11 @@ export interface PullRequestRequest {
     notes?: string;
 }
 
-export interface EditPullRequestRequest extends PullRequestRequest, BaseModel {
+export interface EditPullRequestRequest extends PullRequestRequest, ResourceModel {
     status: number;
 }
 
-export interface PullRequestRecord extends PullRequestRequest, BaseModel {
+export interface PullRequestRecord extends PullRequestRequest, ResourceModel {
     accountId: number;
     status: number;
     created: Date;

@@ -16,7 +16,7 @@ import {NavLink, useHistory} from "react-router-dom";
 import {faCodeBranch, faHome, faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon as FA} from "@fortawesome/react-fontawesome";
 import {useStoreActions, useStoreState} from "../../store";
-import {APP_NAME, CONTAINER_FLUID} from "../../constants";
+import {APP_NAME, CONTAINER_FLUID} from "../../utils/constants";
 
 export const Navigation: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);

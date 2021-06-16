@@ -1,5 +1,5 @@
 import React from "react";
-import {AlertItem} from "../../models/alert";
+import {AlertItem} from "../../utils/alert";
 import {Alert} from "reactstrap";
 import {FontAwesomeIcon as FA} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";

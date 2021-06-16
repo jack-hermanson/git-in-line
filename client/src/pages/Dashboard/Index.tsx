@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Card, Col, Row} from "reactstrap";
 import {PageTitle} from "../../components/Layout/PageTitle";
-import {APP_NAME} from "../../constants";
+import {APP_NAME} from "../../utils/constants";
 
 export const Index: React.FC = () => {
 

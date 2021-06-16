@@ -2,7 +2,7 @@ import React from "react";
 import csuSignature from "../../images/csu-signature.svg";
 import csuSignatureMobile from "../../images/csu-signature-mobile.svg";
 import {Container} from "reactstrap";
-import {CONTAINER_FLUID} from "../../constants";
+import {CONTAINER_FLUID} from "../../utils/constants";
 
 export const Header: React.FC = () => {
     return (

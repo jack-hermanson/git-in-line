@@ -2,10 +2,10 @@ import React, {useEffect} from "react";
 import {PageTitle} from "../../components/Layout/PageTitle";
 import {Col, Row} from "reactstrap";
 import {CreateEditPullRequest} from "../../components/PullRequest/CreateEditPullRequest";
-import {PullRequestRequest} from "../../models/pullRequest";
+import {PullRequestRequest} from "../../../../shared/src/resource_models/pullRequest";
 import {useStoreActions, useStoreState} from "../../store";
 import {useHistory} from "react-router-dom";
-import {scrollToTop} from "../../utils";
+import {scrollToTop} from "../../utils/utils";
 
 export const Create: React.FC = () => {
 

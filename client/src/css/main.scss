@@ -81,3 +81,7 @@ table.same-width {
 .capitalize {
   text-transform: capitalize;
 }
+
+.alert-success {
+  background-color: lighten($green, 60%);
+}

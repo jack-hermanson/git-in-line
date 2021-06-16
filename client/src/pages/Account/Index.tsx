@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Col, Row} from "reactstrap";
 import {PageTitle} from "../../components/Layout/PageTitle";
-import {APP_NAME} from "../../constants";
+import {APP_NAME} from "../../utils/constants";
 import {useStoreState} from "../../store";
 import {useHistory} from "react-router-dom";
 

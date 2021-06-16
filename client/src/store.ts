@@ -1,9 +1,9 @@
 import {createStore, createTypedHooks, action, Action, thunk, Thunk} from "easy-peasy";
-import {AccountRecord, LoginRequest} from "./models/account";
+import {AccountRecord, LoginRequest} from "../../shared/src/resource_models/account";
 import AccountClient from "./clients/AccountClient";
 import PullRequestClient from "./clients/PullRequestClient";
-import {EditPullRequestRequest, PullRequestRecord, PullRequestRequest} from "./models/pullRequest";
-import {AlertItem, errorAlert, successAlert} from "./models/alert";
+import {EditPullRequestRequest, PullRequestRecord, PullRequestRequest} from "../../shared/src/resource_models/pullRequest";
+import {AlertItem, errorAlert, successAlert} from "./utils/alert";
 
 interface StoreModel {
     currentUser: AccountRecord | undefined;

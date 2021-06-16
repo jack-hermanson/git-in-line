@@ -1,6 +1,6 @@
-import {PullRequestRequest, PullRequestRecord, EditPullRequestRequest} from "../models/pullRequest";
+import {PullRequestRequest, PullRequestRecord, EditPullRequestRequest} from "../../../shared/src/resource_models/pullRequest";
 import axios from "axios";
-import {getAuthHeader} from "../utils";
+import {getAuthHeader} from "../utils/utils";
 
 export default abstract class PullRequestClient {
     static baseUrl = "/api/pull-requests";
