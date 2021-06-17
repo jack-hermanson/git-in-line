@@ -35,4 +35,5 @@ export const PriorityLabels = new Map<Priority, string>([
 
 export enum SocketEvent {
     MODIFY_PULL_REQUESTS = "modify_pull_requests",
+    MODIFY_ACCOUNTS = "modify_accounts",
 }

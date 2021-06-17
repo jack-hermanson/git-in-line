@@ -16,9 +16,17 @@ export class Account {
     token?: string;
 }
 
+const usernameKey = Joi.string().min(2).required();
+
 export const newAccountSchema = Joi.object()
     .options({ abortEarly: false })
     .keys({
-        username: Joi.string().min(2).required(),
+        username: usernameKey,
         password: Joi.string().min(2).required(),
+    });
+
+export const editAccountSchema = Joi.object()
+    .options({ abortEarly: false })
+    .keys({
+        username: usernameKey,
     });

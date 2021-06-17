@@ -1,8 +1,9 @@
 import express, { Response } from "express";
 import { AuthRequest } from "../utils/types";
-import { HTTP } from "../../../shared/src/enums";
-import { newAccountSchema } from "../models/Account";
+import { HTTP, SocketEvent } from "../../../shared/src/enums";
+import { editAccountSchema, newAccountSchema } from "../models/Account";
 import {
+    EditAccountRequest,
     LoginRequest,
     NewAccountRequest,
 } from "../../../shared/src/resource_models/account";
@@ -10,6 +11,7 @@ import { sendError } from "../utils/utils";
 import { validateRequest } from "../utils/validation";
 import AccountService from "../services/AccountService";
 import { auth } from "../middleware/auth";
+import { Socket } from "socket.io";
 
 export const router = express.Router();
 
@@ -28,6 +30,9 @@ router.post("/", async (req: AuthRequest<NewAccountRequest>, res: Response) => {
 
         if (!newAccount) return;
         delete newAccount.password;
+
+        const socket: Socket = req.app.get("socketio");
+        socket.emit(SocketEvent.MODIFY_ACCOUNTS);
 
         res.status(HTTP.CREATED).json(newAccount);
     } catch (error) {
@@ -72,3 +77,35 @@ router.post("/logout", auth, async (req: AuthRequest<any>, res: Response) => {
     await AccountService.logOut(req.account);
     res.sendStatus(HTTP.OK);
 });
+
+// edit account
+router.put(
+    "/",
+    auth,
+    async (req: AuthRequest<EditAccountRequest>, res: Response) => {
+        try {
+            if (!(await validateRequest(editAccountSchema, req, res))) {
+                return;
+            }
+            const requestBody: EditAccountRequest = req.body;
+            requestBody.username = requestBody.username.toLowerCase();
+
+            const editedAccount = await AccountService.edit(
+                req.account,
+                requestBody,
+                res
+            );
+
+            if (!editedAccount) {
+                return;
+            }
+
+            const socket: Socket = req.app.get("socketio");
+            socket.emit(SocketEvent.MODIFY_ACCOUNTS);
+
+            res.json(editedAccount);
+        } catch (error) {
+            sendError(error, res);
+        }
+    }
+);

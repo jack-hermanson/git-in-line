@@ -8,6 +8,7 @@ import {
 } from "easy-peasy";
 import {
     AccountRecord,
+    EditAccountRequest,
     LoginRequest,
 } from "../../shared/src/resource_models/account";
 import AccountClient from "./clients/AccountClient";
@@ -24,6 +25,10 @@ interface StoreModel {
     setCurrentUser: Action<StoreModel, AccountRecord | undefined>;
     logIn: Thunk<StoreModel, LoginRequest>;
     logOut: Thunk<StoreModel, string>;
+    editAccount: Thunk<
+        StoreModel,
+        { token: string; editedAccount: EditAccountRequest }
+    >;
 
     accounts: AccountRecord[] | undefined;
     setAccounts: Action<StoreModel, AccountRecord[] | undefined>;
@@ -71,6 +76,20 @@ export const store = createStore<StoreModel>({
         }
         actions.setCurrentUser(undefined);
         actions.addAlert(successAlert("user", "logged out"));
+    }),
+    editAccount: thunk(async (actions, payload) => {
+        try {
+            const editedUser = await AccountClient.editAccount(
+                payload.editedAccount,
+                payload.token
+            );
+            actions.addAlert(successAlert("account", "edited"));
+            actions.setCurrentUser(editedUser);
+        } catch (error) {
+            actions.addAlert(errorAlert(error.message));
+            console.error(error);
+            throw error;
+        }
     }),
 
     accounts: undefined,

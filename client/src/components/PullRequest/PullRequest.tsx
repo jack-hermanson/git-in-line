@@ -3,7 +3,12 @@ import { Card, CardBody, CardFooter, CardHeader } from "reactstrap";
 import { PullRequestRecord } from "../../../../shared/src/resource_models/pullRequest";
 import { KeyValTable } from "../Utils/KeyValTable";
 import { PriorityLabel } from "./PriorityLabel";
-import { formatDateTime, KeyValPair, scrollToTop } from "../../utils/utils";
+import {
+    capitalizeFirstLetter,
+    formatDateTime,
+    KeyValPair,
+    scrollToTop,
+} from "../../utils/utils";
 import { StatusLabel } from "./StatusLabel";
 import { useStoreActions, useStoreState } from "../../store";
 import { StatusModal } from "./StatusModal";
@@ -45,7 +50,10 @@ export const PullRequest: React.FC<Props> = ({ pullRequest }: Props) => {
     }
     if (accounts) {
         const account = accounts.find((a) => a.id === pullRequest.accountId);
-        attributes.push({ key: "User", val: account!.username });
+        attributes.push({
+            key: "User",
+            val: capitalizeFirstLetter(account!.username),
+        });
     }
     if (pullRequest.updated !== pullRequest.created) {
         attributes.push({

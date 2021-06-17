@@ -1,5 +1,6 @@
 import {
     AccountRecord,
+    EditAccountRequest,
     LoginRequest,
 } from "../../../shared/src/resource_models/account";
 import axios from "axios";
@@ -42,5 +43,17 @@ export default abstract class AccountClient {
             null,
             getAuthHeader(token)
         );
+    }
+
+    static async editAccount(
+        editAccountRequest: EditAccountRequest,
+        token: string
+    ) {
+        const response = await axios.put<AccountRecord>(
+            this.baseUrl,
+            editAccountRequest,
+            getAuthHeader(token)
+        );
+        return response.data;
     }
 }

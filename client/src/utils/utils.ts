@@ -29,6 +29,10 @@ export const formatDate = (date: Date): string => {
     });
 };
 
+export const removeTime = (date: Date): Date => {
+    return new Date(new Date(date).setHours(0, 0, 0));
+};
+
 export const formatTime = (date: Date): string => {
     return new Date(date).toLocaleTimeString([], {
         hour: "numeric",
@@ -39,10 +43,6 @@ export const formatTime = (date: Date): string => {
 export const formatDateTime = (date: Date): string => {
     return `${formatDate(date)} ${formatTime(date)}`;
 };
-
-export enum SocketEvent {
-    MODIFY_PULL_REQUESTS = "modify_pull_requests",
-}
 
 export interface ValueLabelPair<T> {
     value: T;
@@ -58,4 +58,8 @@ export const enumToValueLabelPairs = <T>(
             label: p[1],
         };
     });
+};
+
+export const capitalizeFirstLetter = (text: string): string => {
+    return `${text.charAt(0).toUpperCase()}${text.substring(1)}`;
 };

@@ -53,11 +53,7 @@ export const Navigation: React.FC = () => {
                             </NavLink>
                         </NavItem>
                     </Nav>
-                    <Nav
-                        navbar
-                        style={{ marginLeft: "auto" }}
-                        className="mt-2 mt-lg-0"
-                    >
+                    <Nav navbar style={{ marginLeft: "auto" }}>
                         <NavItem>{renderAccount()}</NavItem>
                     </Nav>
                 </Collapse>
@@ -81,6 +77,7 @@ export const Navigation: React.FC = () => {
                 <ButtonDropdown
                     isOpen={showAccountDrop}
                     toggle={() => setShowAccountDrop((o) => !o)}
+                    className="mt-2 mt-lg-0"
                 >
                     <DropdownToggle
                         size="sm"
