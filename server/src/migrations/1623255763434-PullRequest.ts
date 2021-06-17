@@ -22,6 +22,7 @@ export class PullRequest1623255763434 implements MigrationInterface {
                 name: "updated",
                 type: "timestamp",
                 isNullable: true,
+                default: "CURRENT_TIMESTAMP",
             },
             {
                 name: "gitHubUrl",
