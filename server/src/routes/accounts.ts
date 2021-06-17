@@ -1,6 +1,6 @@
 import express, { Response } from "express";
 import { AuthRequest } from "../utils/types";
-import { HTTP } from "../../../shared/src/enums";
+import { HTTP, SocketEvent } from "../../../shared/src/enums";
 import { editAccountSchema, newAccountSchema } from "../models/Account";
 import {
     EditAccountRequest,
@@ -11,6 +11,7 @@ import { sendError } from "../utils/utils";
 import { validateRequest } from "../utils/validation";
 import AccountService from "../services/AccountService";
 import { auth } from "../middleware/auth";
+import { Socket } from "socket.io";
 
 export const router = express.Router();
 
@@ -29,6 +30,9 @@ router.post("/", async (req: AuthRequest<NewAccountRequest>, res: Response) => {
 
         if (!newAccount) return;
         delete newAccount.password;
+
+        const socket: Socket = req.app.get("socketio");
+        socket.emit(SocketEvent.MODIFY_ACCOUNTS);
 
         res.status(HTTP.CREATED).json(newAccount);
     } catch (error) {
@@ -95,6 +99,9 @@ router.put(
             if (!editedAccount) {
                 return;
             }
+
+            const socket: Socket = req.app.get("socketio");
+            socket.emit(SocketEvent.MODIFY_ACCOUNTS);
 
             res.json(editedAccount);
         } catch (error) {

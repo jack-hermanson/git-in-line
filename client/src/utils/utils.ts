@@ -44,10 +44,6 @@ export const formatDateTime = (date: Date): string => {
     return `${formatDate(date)} ${formatTime(date)}`;
 };
 
-export enum SocketEvent {
-    MODIFY_PULL_REQUESTS = "modify_pull_requests",
-}
-
 export interface ValueLabelPair<T> {
     value: T;
     label: string;
