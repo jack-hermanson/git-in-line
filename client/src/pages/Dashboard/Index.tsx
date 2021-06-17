@@ -35,7 +35,7 @@ export const Index: React.FC = () => {
                 </Col>
                 <Col lg={4}>
                     <h4>Most Recent</h4>
-                    {pullRequests?.length ? (
+                    {pullRequests?.length && pullRequests.length >= 2 ? (
                         <React.Fragment>
                             <PullRequest pullRequest={pullRequests[0]} />
                             <PullRequest pullRequest={pullRequests[1]} />

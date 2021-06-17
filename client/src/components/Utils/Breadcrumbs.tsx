@@ -10,7 +10,10 @@ export const Breadcrumbs: React.FC<Props> = ({ links }: Props) => {
     return (
         <Breadcrumb>
             {links.map((link, index) => (
-                <BreadcrumbItem active={index === links.length - 1}>
+                <BreadcrumbItem
+                    key={`${link.label}-${index}`}
+                    active={index === links.length - 1}
+                >
                     <Link to={link.path}>{link.label}</Link>
                 </BreadcrumbItem>
             ))}
