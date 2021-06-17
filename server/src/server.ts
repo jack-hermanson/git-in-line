@@ -10,7 +10,7 @@ import { ConnectionOptions, createConnection } from "typeorm";
 import { migrations } from "./migrations/_migrations";
 import { Account } from "./models/Account";
 import { PullRequest } from "./models/PullRequest";
-import * as enforce from "express-sslify";
+import sslRedirect from "heroku-ssl-redirect";
 
 // env
 const envPath = path.join(__dirname, "..", ".env");
@@ -27,10 +27,8 @@ const staticFiles = express.static(path.join(__dirname, "../../client/build"));
 app.use(staticFiles);
 
 // ssl
-if (app.get("env") === "production") {
-    app.use(enforce.HTTPS({ trustProtoHeader: true }));
-}
 console.log(`Environment: ${app.get("env")}`);
+app.use(sslRedirect(["production"]));
 
 // express routes
 app.use("/api/accounts", routes.accounts);
