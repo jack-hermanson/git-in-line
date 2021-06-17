@@ -22,13 +22,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set("port", process.env.PORT || 5000);
 
-// static
-const staticFiles = express.static(path.join(__dirname, "../../client/build"));
-app.use(staticFiles);
-
 // ssl
 console.log(`Environment: ${app.get("env")}`);
 app.use(sslRedirect(["production"]));
+
+// static
+const staticFiles = express.static(path.join(__dirname, "../../client/build"));
+app.use(staticFiles);
 
 // express routes
 app.use("/api/accounts", routes.accounts);
