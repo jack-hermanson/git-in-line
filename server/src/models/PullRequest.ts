@@ -13,7 +13,7 @@ export class PullRequest {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @CreateDateColumn({ nullable: false })
+    @CreateDateColumn({ nullable: false, insert: true })
     created: Date;
 
     @UpdateDateColumn({ nullable: true })

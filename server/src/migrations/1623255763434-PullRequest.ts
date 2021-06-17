@@ -16,6 +16,7 @@ export class PullRequest1623255763434 implements MigrationInterface {
                 name: "created",
                 type: "timestamp",
                 isNullable: false,
+                default: "CURRENT_TIMESTAMP",
             },
             {
                 name: "updated",
