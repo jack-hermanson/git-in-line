@@ -10,6 +10,7 @@ import { ConnectionOptions, createConnection } from "typeorm";
 import { migrations } from "./migrations/_migrations";
 import { Account } from "./models/Account";
 import { PullRequest } from "./models/PullRequest";
+import * as enforce from "express-sslify";
 
 // env
 const envPath = path.join(__dirname, "..", ".env");
@@ -24,6 +25,12 @@ app.set("port", process.env.PORT || 5000);
 // static
 const staticFiles = express.static(path.join(__dirname, "../../client/build"));
 app.use(staticFiles);
+
+// ssl
+if (app.get("env") === "production") {
+    app.use(enforce.HTTPS({ trustProtoHeader: true }));
+}
+console.log(`Environment: ${app.get("env")}`);
 
 // express routes
 app.use("/api/accounts", routes.accounts);
