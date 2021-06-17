@@ -14,12 +14,12 @@ export class PullRequest1623255763434 implements MigrationInterface {
             idColumn,
             {
                 name: "created",
-                type: "datetime",
+                type: "timestamp",
                 isNullable: false,
             },
             {
                 name: "updated",
-                type: "datetime",
+                type: "timestamp",
                 isNullable: true,
             },
             {
